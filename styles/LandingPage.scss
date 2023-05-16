@@ -1,0 +1,39 @@
+@import "utils";
+
+.topSection{
+  background-color: $primaryBackgroundColor;
+  color: white !important;
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1{
+    font-size: 5rem;
+  }
+  p{
+    font-size: 2rem;
+  }
+  a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100px;
+    height: 2rem;
+    border-radius: $primaryBorderRadius;
+    background-color: $thirdBackgroundColor;
+    transition: .25s scale;
+    box-shadow: $lightShadow;
+
+    &:hover{
+      scale: 1.1;
+    }
+  }
+  .loginField{
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+  }
+}
