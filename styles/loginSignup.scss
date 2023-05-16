@@ -1,0 +1,21 @@
+@import "utils";
+
+.card{
+  height: 600px;
+  width: 400px;
+  background-color: $secondaryBackgroundColor;
+  border-radius: $primaryBorderRadius;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page{
+  height: calc(100vh - $headerHeight);
+  background-color: $primaryBackgroundColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
