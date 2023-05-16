@@ -1,14 +1,26 @@
 @import "utils";
 
 .card{
-  height: 600px;
+  height: 500px;
   width: 400px;
   background-color: $secondaryBackgroundColor;
   border-radius: $primaryBorderRadius;
+  box-shadow: $lightShadow;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  h1{
+    font-weight: 100;
+  }
+  .buttonGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .page{
