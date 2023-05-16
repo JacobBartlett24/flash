@@ -20,6 +20,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    .userInput{
+      height: 2rem;
+      border-radius: $primaryBorderRadius;
+      border: 1px solid black;
+      margin: .5rem 0;
+      padding: 5px;
+      box-shadow: $lightShadow;
+    }
   }
 }
 

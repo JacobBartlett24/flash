@@ -1,7 +1,9 @@
+import { Link } from "@remix-run/react";
+
 export default function Header(){
   return(
     <div className="header">
-      <span>Flash</span>
+      <Link to="/">Flash</Link>
       <span>icons</span>
     </div>  
   )
