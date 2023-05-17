@@ -8,26 +8,27 @@
     "sass": "sass --watch styles:app/styles"
   },
   "dependencies": {
-    "@remix-run/css-bundle": "^1.15.0",
-    "@remix-run/node": "^1.15.0",
-    "@remix-run/react": "^1.15.0",
-    "@remix-run/vercel": "^1.15.0",
+    "@remix-run/css-bundle": "^1.16.0",
+    "@remix-run/node": "^1.16.0",
+    "@remix-run/react": "^1.16.0",
+    "@remix-run/vercel": "^1.16.0",
     "@supabase/auth-helpers-remix": "^0.1.9",
     "@supabase/supabase-js": "^2.22.0",
-    "@vercel/node": "^2.10.3",
+    "@vercel/node": "^2.14.2",
     "concurrently": "^8.0.1",
-    "isbot": "^3.6.8",
-    "node-sass": "^8.0.0",
+    "isbot": "^3.6.10",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.15.0",
-    "@remix-run/eslint-config": "^1.15.0",
-    "@remix-run/serve": "^1.15.0",
-    "@types/react": "^18.0.35",
-    "@types/react-dom": "^18.0.11",
-    "eslint": "^8.38.0",
+    "@remix-run/dev": "^1.16.0",
+    "@remix-run/eslint-config": "^1.16.0",
+    "@remix-run/serve": "^1.16.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "eslint": "^8.40.0",
+    "supabase": "^1.61.2",
     "typescript": "^5.0.4"
   },
   "engines": {
