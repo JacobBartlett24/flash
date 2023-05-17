@@ -1,4 +1,3 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
 import { LinksFunction, LoaderArgs, json } from "@remix-run/node";
 import styles from "~/styles/Root.css";
 import headerStyles from "~/styles/Header.css";
@@ -10,16 +9,18 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useRevalidator,
 } from "@remix-run/react";
 import Header from "./components/Header";
-import { createBrowserClient, createServerClient } from "@supabase/auth-helpers-remix";
+import { SupabaseClient, createBrowserClient, createServerClient } from "@supabase/auth-helpers-remix";
 import { useEffect, useState } from "react";
+import { Database } from "db_types";
+import { createClient } from "@supabase/supabase-js";
+import createServerSupabase from "utils/supabase.server"
 
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles },
-          { rel: "stylesheet", href: headerStyles },];
+  { rel: "stylesheet", href: headerStyles },];
 };
 
 
@@ -30,11 +31,8 @@ export const loader = async ({ request }: LoaderArgs) => {
   }
 
   const response = new Response()
+  const supabase = createServerSupabase({ request, response })
 
-  const supabase = createServerClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!, {
-    request,
-    response,
-  })
 
   const {
     data: { session },
@@ -46,33 +44,23 @@ export const loader = async ({ request }: LoaderArgs) => {
       session,
     },
     {
-      headers: response.headers,
+      headers: response.headers
     }
   )
 }
 
+type TypedSupabaseClient = SupabaseClient<Database>
+
+export type SupabaseOutletContext = {
+  supabase: TypedSupabaseClient
+}
+
 export default function App() {
   const { env, session } = useLoaderData()
-  const { revalidate } = useRevalidator()
-  
-  const [supabase] = useState(() => createBrowserClient(env.SUPABASE_URL, env.SUPABASE_ANON_KEY))
-  
+
+  const [supabase] = useState(() => createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_ANON_KEY))
+
   const serverAccessToken = session?.access_token
-  
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.access_token !== serverAccessToken) {
-        // server and client are out of sync.
-        revalidate()
-      }
-    })
-  
-    return () => {
-      subscription.unsubscribe()
-    }
-  }, [serverAccessToken, supabase])
 
   return (
     <html lang="en">
