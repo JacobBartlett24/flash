@@ -14,6 +14,7 @@ export default function ProfileLayout({ galleryInfo }: props) {
         </div>
         <div className="bottomSection">
           <div className="profilePictureSection">
+            <button className="uploadButton">Upload</button>
             <div className="profilePicture">
               <img src="https://cdn.midjourney.com/1ff82f10-e3bb-4728-9bc3-74af280ae53f/0_2.png" alt="profilePicture" />
             </div>
