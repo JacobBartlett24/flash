@@ -27,11 +27,13 @@ export default function Homepage() {
       <div className="mainFeed">
         {data.userFlash.map(flash => {
           return (
-            <FlashBox
-              flashImage={flash.img_url}
-              description={flash.description}
-              price={flash.price}
-            />
+            <div key={flash.id}>
+              <FlashBox
+                flashImage={flash.img_url}
+                description={flash.description}
+                price={flash.price}
+              />
+            </div>
           )
         })}
       </div>

@@ -1,4 +1,4 @@
-import { LinksFunction, LoaderArgs, json } from "@remix-run/node";
+import { LinksFunction, LoaderArgs, json, redirect } from "@remix-run/node";
 import styles from "~/styles/Root.css";
 import headerStyles from "~/styles/Header.css";
 import {
@@ -62,6 +62,15 @@ export default function App() {
 
   const serverAccessToken = session?.access_token
 
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.log("error")
+
+    }
+    return redirect("/login")
+  }
+
   return (
     <html lang="en">
       <head>
@@ -71,7 +80,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Header />
+        <Header handleLogout={handleLogout} />
         <Outlet context={{ supabase }} />
         <ScrollRestoration />
         <Scripts />
