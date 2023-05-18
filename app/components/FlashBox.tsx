@@ -1,3 +1,5 @@
+import { FaFacebookSquare, FaInstagram, FaReddit, FaTiktok, FaTwitter } from 'react-icons/fa';
+
 type props = {
   flashImage: string,
   description: string,
@@ -12,9 +14,17 @@ export default function FlashBox({ flashImage, description, price }: props) {
           <img src={flashImage} alt={description}></img>
         </div>
         <div className="desc">
-          <span className="price">${price} <br /></span>
-          <span className="description">{description}</span>
-
+          <div className="price">${price} <br /></div>
+          <div className="description">{description}<br /></div>
+          <div> Share On:
+            <div className="socialMedia">
+              <FaTwitter />
+              <FaInstagram />
+              <FaFacebookSquare />
+              <FaReddit />
+              <FaTiktok />
+            </div>
+          </div>
         </div>
       </div>
     </>

@@ -1,13 +1,13 @@
 .homepage {
+  height: calc(100vh - 60px);
   background-color: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  overflow-y: overlay;
 }
 .homepage .mainFeed {
-  min-height: calc(100vh - 60px);
+  height: 72vh;
   width: 33vw;
   background-color: black;
   color: white;
@@ -15,12 +15,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  overflow-y: scroll;
   border-right: 1px solid white;
   border-left: 1px solid white;
   padding: 100px 100px;
+  position: absolute;
+  top: 60px;
 }
 .homepage .card {
-  height: 600px;
+  height: 7 0px;
   width: 400px;
   background-color: black;
   border: 1px solid white;
@@ -28,7 +31,7 @@
   margin-bottom: 18rem;
 }
 .homepage .card:last-child {
-  margin-bottom: 6rem;
+  margin-bottom: 0rem;
 }
 .homepage .card .media img {
   height: 400px;
@@ -39,6 +42,10 @@
   color: green;
 }
 .homepage .card .desc {
+  display: grid;
+  grid-template-rows: 20px 160px 90px;
+  row-gap: 10px;
+  height: 300px;
   padding: 10px;
 }
 
