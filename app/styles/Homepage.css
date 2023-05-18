@@ -53,6 +53,10 @@
 }
 .homepage .card .icons {
   margin: 20px 10px 0 0;
+  cursor: pointer;
+}
+.homepage .card .cart {
+  margin-left: 90px;
 }
 .homepage .card svg:hover {
   color: orange;

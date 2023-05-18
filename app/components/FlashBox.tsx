@@ -1,5 +1,5 @@
 import { IconContext } from 'react-icons';
-import { FaFacebookSquare, FaInstagram, FaReddit, FaTiktok, FaTwitter } from 'react-icons/fa';
+import { FaCartArrowDown, FaFacebookSquare, FaInstagram, FaReddit, FaTiktok, FaTwitter } from 'react-icons/fa';
 
 type props = {
   flashImage: string,
@@ -25,6 +25,9 @@ export default function FlashBox({ flashImage, description, price }: props) {
                 <FaFacebookSquare size={30} />
                 <FaReddit size={30} />
                 <FaTiktok size={30} />
+              </IconContext.Provider>
+              <IconContext.Provider value={{ className: "icons cart" }}>
+                <FaCartArrowDown size={30} />
               </IconContext.Provider>
             </div>
           </div>
