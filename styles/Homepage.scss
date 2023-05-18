@@ -1,18 +1,47 @@
 @import "utils";
 
-.homepage{
+.homepage {
   background-color: $primaryBackgroundColor;
-  display: grid;
-  grid-template-columns: 15vw 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - $headerHeight);
+  width: 100%;
+
+  .mainFeed {
+    height: calc(100vh - $headerHeight);
+    width: 33vw;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    height: 400px;
+    width: 400px;
+    background-color: black;
+    border: 1px solid white;
+
+    .media {
+      img {
+        height: 300px;
+        width: 100%;
+      }
+    }
+  }
 }
 
-.navbar{
+.navbar {
   height: calc(100vh - $headerHeight);
   background-color: $primaryBackgroundColor;
   border-right: 1px solid black;
-  ul{
+
+  ul {
     list-style: none;
-    li{
+
+    li {
       font-weight: 100;
       font-size: 1.5rem;
       color: white;

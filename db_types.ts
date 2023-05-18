@@ -29,6 +29,38 @@ export interface Database {
           user_id?: string
         }
       }
+      UserFlash: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: number
+          img_url: string | null
+          price: number | null
+          quantity: number | null
+          title: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          img_url?: string | null
+          price?: number | null
+          quantity?: number | null
+          title?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: number
+          img_url?: string | null
+          price?: number | null
+          quantity?: number | null
+          title?: string | null
+          user_id?: string | null
+        }
+      }
     }
     Views: {
       [_ in never]: never

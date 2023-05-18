@@ -16,23 +16,17 @@ export const meta: V2_MetaFunction = () => {
 export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
-  const { data } = await supabase.from('test').select();
+
 
   if ((await supabase.auth.getSession()).data.session?.user.aud == "authenticated") {
     return redirect("/homepage")
   }
-
-
-  return json({ test: data ?? [] }, { headers: response.headers })
+  return null
 }
 
 export default function Index() {
-
-  const { test } = useLoaderData<typeof loader>()
-
   return (
     <div style={{ fontFamily: "Bebas Neue, sans-serif", lineHeight: "1.4" }}>
-      <pre>{JSON.stringify(test, null, 2)}</pre>
       <div className="topSection">
         <img src={skull} alt="Flaming Skull" />
         <h1>Flash ⚡</h1>
