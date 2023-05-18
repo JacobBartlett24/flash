@@ -1,3 +1,4 @@
+import { IconContext } from 'react-icons';
 import { FaFacebookSquare, FaInstagram, FaReddit, FaTiktok, FaTwitter } from 'react-icons/fa';
 
 type props = {
@@ -18,11 +19,13 @@ export default function FlashBox({ flashImage, description, price }: props) {
           <div className="description">{description}<br /></div>
           <div> Share On:
             <div className="socialMedia">
-              <FaTwitter />
-              <FaInstagram />
-              <FaFacebookSquare />
-              <FaReddit />
-              <FaTiktok />
+              <IconContext.Provider value={{ className: "icons" }}>
+                <FaTwitter size={30} />
+                <FaInstagram size={30} />
+                <FaFacebookSquare size={30} />
+                <FaReddit size={30} />
+                <FaTiktok size={30} />
+              </IconContext.Provider>
             </div>
           </div>
         </div>

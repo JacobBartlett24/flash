@@ -12,6 +12,12 @@
   a {
     text-decoration: none;
     color: white;
+    transition: .25s color, .5s scale;
+  }
+
+  a:hover {
+    color: orange;
+    scale: 1.1;
   }
 }
 

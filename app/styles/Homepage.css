@@ -48,6 +48,29 @@
   height: 300px;
   padding: 10px;
 }
+.homepage .card svg {
+  transition: 0.25s color, 0.5s scale;
+}
+.homepage .card .icons {
+  margin: 20px 10px 0 0;
+}
+.homepage .card svg:hover {
+  color: orange;
+  scale: 1.1;
+}
+.homepage ::-webkit-scrollbar {
+  width: 5px;
+}
+.homepage ::-webkit-scrollbar-track {
+  background: black;
+}
+.homepage ::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 5px;
+}
+.homepage ::-webkit-scrollbar-thumb:hover {
+  background: darkorange;
+}
 
 .navbar {
   height: calc(100vh - 60px);

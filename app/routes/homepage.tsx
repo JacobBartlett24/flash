@@ -34,15 +34,6 @@ export default function Homepage() {
             />
           )
         })}
-        {data.userFlash.map(flash => {
-          return (
-            <FlashBox
-              flashImage={flash.img_url}
-              description={flash.description}
-              price={flash.price}
-            />
-          )
-        })}
       </div>
     </div>
   );

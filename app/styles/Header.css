@@ -10,6 +10,11 @@
 .header a {
   text-decoration: none;
   color: white;
+  transition: 0.25s color, 0.5s scale;
+}
+.header a:hover {
+  color: orange;
+  scale: 1.1;
 }
 
 /*# sourceMappingURL=Header.css.map */

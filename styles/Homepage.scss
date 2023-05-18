@@ -56,6 +56,36 @@
       height: 300px;
       padding: 10px;
     }
+
+    svg {
+      transition: .25s color, .5s scale;
+    }
+
+    .icons {
+      margin: 20px 10px 0 0;
+    }
+
+    svg:hover {
+      color: orange;
+      scale: 1.1;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: darkorange;
   }
 }
 
