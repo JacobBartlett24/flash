@@ -20,10 +20,15 @@
   width: 400px;
   background-color: black;
   border: 1px solid white;
+  border-radius: 15px;
 }
 .homepage .card .media img {
   height: 300px;
   width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+.homepage .card .desc {
+  padding: 10px;
 }
 
 .navbar {

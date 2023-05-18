@@ -23,12 +23,18 @@
     width: 400px;
     background-color: black;
     border: 1px solid white;
+    border-radius: $primaryBorderRadius;
 
     .media {
       img {
         height: 300px;
         width: 100%;
+        border-radius: $primaryBorderRadius $primaryBorderRadius 0 0;
       }
+    }
+
+    .desc {
+      padding: 10px;
     }
   }
 }
