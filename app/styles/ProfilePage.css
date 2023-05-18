@@ -15,4 +15,65 @@
   flex-direction: column;
 }
 
+.profileLayout {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 30vh 1fr;
+  position: relative;
+}
+.profileLayout .topSection {
+  background-color: #4d4d4d;
+}
+.profileLayout .bottomSection {
+  display: grid;
+  grid-template-columns: 22vw 1fr;
+  justify-content: center;
+  padding: 30px;
+}
+.profileLayout .bottomSection .profilePictureSection {
+  position: relative;
+}
+.profileLayout .bottomSection .profilePictureSection .profilePicture {
+  height: 300px;
+  width: 300px;
+  border: 6px solid black;
+  position: absolute;
+  top: -170px;
+  left: 100px;
+  border-radius: 50%;
+  background-color: black;
+}
+.profileLayout .bottomSection .profilePictureSection .profilePicture img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.profileLayout .bottomSection .gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 100px;
+}
+.profileLayout .bottomSection .gallery h1 {
+  margin-bottom: 4rem;
+}
+.profileLayout .bottomSection .gallery .galleryImages {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+}
+.profileLayout .bottomSection .gallery .galleryImages img {
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
+  transition: 0.5s scale;
+}
+.profileLayout .bottomSection .gallery .galleryImages img:hover {
+  scale: 1.1;
+}
+
 /*# sourceMappingURL=ProfilePage.css.map */

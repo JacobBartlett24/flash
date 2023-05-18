@@ -1,7 +1,9 @@
-import { ActionArgs, ActionFunction, LinksFunction } from "@remix-run/node";
+import { ActionArgs, ActionFunction, LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node";
 import styles from "../styles/ProfilePage.css"
-import { Form } from "@remix-run/react";
+import { Form, useLoaderData, useOutletContext } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
+import ProfileLayout from "~/components/ProfileLayout";
+import { SupabaseOutletContext } from "~/root";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -59,11 +61,30 @@ export const action: ActionFunction = async ({ request, params }: ActionArgs) =>
   return null
 }
 
+export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
+
+  let session = (await supabase.auth.getSession()).data.session?.user.id;
+  let { data, error } = await supabase.from('UserFlash').select('*').eq('user_id', session)
+
+  if (error) {
+    console.log(error)
+  }
+
+  return data
+}
+
 
 export default function Profile() {
+  const data = useLoaderData<typeof loader>()
+  console.log(data)
+
   return (
     <div className="profilePage">
-      <Form method="POST" className="uploadFlashForm">
+      <ProfileLayout galleryInfo={data} />
+
+      {/* <Form method="POST" className="uploadFlashForm">
         <label htmlFor="url">URL</label>
         <input name="url" type="text" required />
         <label htmlFor="description">Description</label>
@@ -71,7 +92,7 @@ export default function Profile() {
         <label htmlFor="price">price</label>
         <input name="price" type="text" required />
         <button type="submit">Upload Flash</button>
-      </Form>
+      </Form> */}
     </div>
   )
 }
