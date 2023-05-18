@@ -3,29 +3,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 60px);
   width: 100%;
+  overflow-y: overlay;
 }
 .homepage .mainFeed {
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   width: 33vw;
   background-color: black;
   color: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  padding: 100px 100px;
 }
 .homepage .card {
-  height: 400px;
+  height: 600px;
   width: 400px;
   background-color: black;
   border: 1px solid white;
   border-radius: 15px;
+  margin-bottom: 18rem;
+}
+.homepage .card:last-child {
+  margin-bottom: 6rem;
 }
 .homepage .card .media img {
-  height: 300px;
+  height: 400px;
   width: 100%;
   border-radius: 15px 15px 0 0;
+}
+.homepage .card .price {
+  color: green;
 }
 .homepage .card .desc {
   padding: 10px;

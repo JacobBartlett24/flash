@@ -4,6 +4,7 @@ import NavBar from "~/components/NavBar";
 import createServerSupabase from "utils/supabase.server";
 import styles from "~/styles/Homepage.css";
 import FlashBox from "~/components/FlashBox";
+import { Database } from "db_types";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -13,7 +14,7 @@ export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
-  const { data } = await supabase.from('UserFlash').select();
+  const { data } = await supabase.from('UserFlash').select()
 
   return json({ userFlash: data })
 }
@@ -23,14 +24,25 @@ export default function Homepage() {
   return (
 
     <div className="homepage">
-
-
       <div className="mainFeed">
-
-        {/* {data.Array.forEach(element => {
-          <FlashBox flashImage={element.img_url} description={element.description} />
-        })} */}
-        <FlashBox flashImage={data.userFlash[0].img_url} description={data.userFlash[0].description} />
+        {data.userFlash.map(flash => {
+          return (
+            <FlashBox
+              flashImage={flash.img_url}
+              description={flash.description}
+              price={flash.price}
+            />
+          )
+        })}
+        {data.userFlash.map(flash => {
+          return (
+            <FlashBox
+              flashImage={flash.img_url}
+              description={flash.description}
+              price={flash.price}
+            />
+          )
+        })}
       </div>
     </div>
   );

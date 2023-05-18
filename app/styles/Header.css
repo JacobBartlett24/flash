@@ -2,7 +2,7 @@
   height: 60px;
   font-size: 1.3rem;
   display: flex;
-  background: linear-gradient(black 10%, #1e1e1e);
+  background: black;
   justify-content: space-around;
   align-items: center;
   color: white;

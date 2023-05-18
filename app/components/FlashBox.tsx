@@ -1,9 +1,10 @@
 type props = {
   flashImage: string,
   description: string,
+  price: number
 }
 
-export default function FlashBox({ flashImage, description }: props) {
+export default function FlashBox({ flashImage, description, price }: props) {
   return (
     <>
       <div className="card">
@@ -11,7 +12,9 @@ export default function FlashBox({ flashImage, description }: props) {
           <img src={flashImage} alt={description}></img>
         </div>
         <div className="desc">
-          {description}
+          <span className="price">${price} <br /></span>
+          <span className="description">{description}</span>
+
         </div>
       </div>
     </>
