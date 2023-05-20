@@ -66,9 +66,7 @@ export default function App() {
     const { error } = await supabase.auth.signOut()
     if (error) {
       console.log("error")
-
     }
-    return redirect("/login")
   }
 
   return (

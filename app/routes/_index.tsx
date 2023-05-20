@@ -36,12 +36,34 @@ export default function Index() {
         <div className="loginField" >
           <Link prefetch="intent" to="/login">
             Login
-            <span className="backgroundButton"></span>
           </Link>
           <Link prefetch="intent" to="/signup">
             New? Sign Up
-            <span className="backgroundButton"></span>
           </Link>
+        </div>
+      </div>
+      <div className="showcaseSection">
+        <div className="showcase">
+          <div className="textbox">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat explicabo et id consequuntur
+            temporibus aspernatur quam consectetur, esse ad libero, a culpa adipisci accusamus corrupti earum saepe quibusdam ab quos.
+            Nemo inventore fuga minima laudantium! Sequi dolore quae voluptates. Quam laudantium placeat aliquam consequuntur saepe
+            sed, ad molestias aliquid assumenda officiis quas nesciunt a cumque. Aliquam repudiandae perferendis natus libero!
+          </div>
+          <div className="image">
+            <img src={skull} alt="" />
+          </div>
+        </div>
+        <div className="showcase">
+          <div className="image">
+            <img src={skull} alt="" />
+          </div>
+          <div className="textbox">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat explicabo et id consequuntur
+            temporibus aspernatur quam consectetur, esse ad libero, a culpa adipisci accusamus corrupti earum saepe quibusdam ab quos.
+            Nemo inventore fuga minima laudantium! Sequi dolore quae voluptates. Quam laudantium placeat aliquam consequuntur saepe
+            sed, ad molestias aliquid assumenda officiis quas nesciunt a cumque. Aliquam repudiandae perferendis natus libero!
+          </div>
         </div>
       </div>
     </div>

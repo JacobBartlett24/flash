@@ -1,6 +1,6 @@
 @import "utils";
 
-.topSection{
+.topSection {
   background-color: $primaryBackgroundColor;
   color: white !important;
   height: 1000px;
@@ -8,13 +8,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  h1{
+
+  h1 {
     font-size: 5rem;
   }
-  p{
+
+  p {
     font-size: 2rem;
   }
-  a{
+
+  a {
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -27,13 +30,35 @@
     transition: .25s scale;
     box-shadow: $lightShadow;
 
-    &:hover{
+    &:hover {
       scale: 1.1;
     }
   }
-  .loginField{
+
+  .loginField {
     width: 300px;
     display: flex;
     justify-content: space-around;
+  }
+}
+
+.showcaseSection {
+  background-color: whitesmoke;
+  min-height: 80vh;
+
+  .showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+
+    .image {
+      scale: .7;
+    }
+
+    .textbox {
+      padding: 0px 15rem;
+      font-size: 1.5rem;
+    }
   }
 }
