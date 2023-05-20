@@ -5,6 +5,7 @@ import createServerSupabase from "utils/supabase.server";
 import styles from "~/styles/Homepage.css";
 import FlashBox from "~/components/FlashBox";
 import { Database } from "db_types";
+import GenreContainer from "~/components/GenreContainer";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -25,17 +26,10 @@ export default function Homepage() {
 
     <div className="homepage">
       <div className="mainFeed">
-        {data.userFlash.map(flash => {
-          return (
-            <div key={flash.id}>
-              <FlashBox
-                flashImage={flash.img_url}
-                description={flash.description}
-                price={flash.price}
-              />
-            </div>
-          )
-        })}
+        <GenreContainer title="Popular" images={data.userFlash} />
+        <GenreContainer title="American Traditional" images={data.userFlash} />
+        <GenreContainer title="Gothic" images={data.userFlash} />
+        <GenreContainer title="New Releases" images={data.userFlash} />
       </div>
     </div>
   );

@@ -1,12 +1,43 @@
 @import "utils";
 
 .homepage {
-  height: calc(100vh - $headerHeight);
+  min-height: calc(100vh - $headerHeight - 8rem);
   background-color: $primaryBackgroundColor;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
   width: 100%;
+  padding: 4rem 0;
+  overflow: visible;
+
+  .mainFeed{
+    display: grid;
+  row-gap: 3rem;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: flex-end;
+  }
+  .title{
+    color: white;
+    text-decoration: none;
+  }
+  .imgGallery{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 1500px;
+    padding: 30px;
+    border-radius: 15px 0  0 15px;
+    background-color: $secondaryBackgroundColor;
+    .imgWrapper{
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      height: 200px;
+      width: 200px;
+      margin-right: 40px;
+      border-radius: $primaryBorderRadius;
+    }
+  }
 }
 
 .navbar {
