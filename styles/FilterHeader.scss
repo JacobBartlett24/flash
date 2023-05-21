@@ -1,0 +1,23 @@
+.filterWrapper{
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .filter{
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    margin-left: .5rem;
+  }
+  .price{
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+  }
+  .alphabetical{
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    margin: 0 1rem;
+  }
+}

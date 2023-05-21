@@ -1,79 +1,58 @@
 .homepage {
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px - 8rem);
   background-color: #1e1e1e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  padding: 4rem 0;
+  overflow: visible;
 }
 .homepage .mainFeed {
-  height: 72vh;
-  width: 33vw;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  overflow-y: scroll;
-  border-right: 1px solid white;
-  border-left: 1px solid white;
-  padding: 100px 100px;
-  position: absolute;
-  top: 60px;
-}
-.homepage .card {
-  height: 7 0px;
-  width: 400px;
-  background-color: black;
-  border: 1px solid white;
-  border-radius: 15px;
-  margin-bottom: 18rem;
-}
-.homepage .card:last-child {
-  margin-bottom: 0rem;
-}
-.homepage .card .media img {
-  height: 400px;
-  width: 100%;
-  border-radius: 15px 15px 0 0;
-}
-.homepage .card .price {
-  color: green;
-}
-.homepage .card .desc {
   display: grid;
-  grid-template-rows: 20px 160px 90px;
-  row-gap: 10px;
-  height: 300px;
-  padding: 10px;
+  row-gap: 3rem;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
 }
-.homepage .card svg {
-  transition: 0.25s color, 0.5s scale;
+.homepage .title {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  transition: 0.25s color;
 }
-.homepage .card .icons {
-  margin: 20px 10px 0 0;
-  cursor: pointer;
-}
-.homepage .card .cart {
-  margin-left: 90px;
-}
-.homepage .card svg:hover {
+.homepage .title:hover {
   color: orange;
-  scale: 1.1;
 }
-.homepage ::-webkit-scrollbar {
-  width: 5px;
+.homepage .collectionWrapper {
+  width: 1300px;
 }
-.homepage ::-webkit-scrollbar-track {
-  background: black;
+.homepage .collectionWrapper .icons {
+  margin-left: 5px;
+  transition: 0.25s color;
 }
-.homepage ::-webkit-scrollbar-thumb {
-  background: orange;
-  border-radius: 5px;
+.homepage .collectionWrapper .icons:hover {
+  color: orange;
 }
-.homepage ::-webkit-scrollbar-thumb:hover {
-  background: darkorange;
+.homepage .collectionWrapper .titleWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.homepage .imgGallery {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 15px 0 0 15px;
+}
+.homepage .imgGallery .imgWrapper {
+  display: flex;
+  justify-content: center;
+}
+.homepage .imgGallery img {
+  height: 200px;
+  width: 200px;
+  margin-right: 40px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
 .navbar {
