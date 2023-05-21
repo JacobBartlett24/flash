@@ -2,6 +2,7 @@ import type { LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
+import MyListbox from "~/components/Listbox";
 import styles from "~/styles/FlashSplatRoute.css";
 
 
@@ -39,7 +40,16 @@ export default function Flash(){
   return(
     <>
       <div className="soloDisplay">
-        {data.userFlash.img_url && <img src={data.userFlash.img_url} alt={data.userFlash.description} />}
+        <div className="media">
+          {data.userFlash.img_url && <img src={data.userFlash.img_url} alt={data.userFlash.description} />}
+        </div>
+        <div className="info">
+          <h1>{data.userFlash.title}</h1>
+          <p>{data.userFlash.description}</p>
+          <p>${data.userFlash.price}</p>
+          <MyListbox />          
+
+        </div>
       </div>
     </>
   )
