@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  height: 4rem;
 }
 .filterWrapper .filter {
   color: inherit;

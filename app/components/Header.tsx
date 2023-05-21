@@ -10,9 +10,13 @@ export default function Header({ handleLogout }: props) {
     <div className="header">
       <div>
         <Link to="/">Flash</Link>
-        <Link to="/profile"><FaLaugh /></Link>
       </div>
-      <button onClick={handleLogout}>Logout</button>
+      <div className="profile">
+        <button onClick={handleLogout}>Logout</button>
+        <Link to="/profile">
+          <FaLaugh size={20}/>
+        </Link>
+      </div>
     </div>
   )
 } 

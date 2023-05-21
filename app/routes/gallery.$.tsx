@@ -1,4 +1,5 @@
-import { LinksFunction, LoaderArgs, LoaderFunction, json } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import FilterHeader from "~/components/FilterHeader";
 import styles from "~/styles/GalleryGenre.css";
 import createServerSupabase from "utils/supabase.server";
