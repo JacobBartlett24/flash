@@ -18,6 +18,10 @@
     color: white;
     text-decoration: none;
     font-size: 2rem;
+    transition: .25s color;
+  }
+  .title:hover{
+    color: orange;
   }
   .collectionWrapper{
     width: 1300px;

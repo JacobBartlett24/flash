@@ -24,12 +24,12 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>()
   return (
 
-    <div className="homepage">
+    <div className="homepage">  
       <div className="mainFeed">
-        <GenreContainer title="Popular" images={data.userFlash} />
-        <GenreContainer title="American Traditional" images={data.userFlash} />
-        <GenreContainer title="Gothic" images={data.userFlash} />
-        <GenreContainer title="New Releases" images={data.userFlash} />
+        <GenreContainer title="popular" images={data.userFlash} />
+        <GenreContainer title="american Traditional" images={data.userFlash} />
+        <GenreContainer title="gothic" images={data.userFlash} />
+        <GenreContainer title="newreleases" images={data.userFlash} />
       </div>
     </div>
   );
