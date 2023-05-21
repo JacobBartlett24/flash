@@ -1,10 +1,8 @@
-import { LinksFunction, LoaderArgs, LoaderFunction, json } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
-import NavBar from "~/components/NavBar";
+import type { LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
 import styles from "~/styles/Homepage.css";
-import FlashBox from "~/components/FlashBox";
-import { Database } from "db_types";
 import GenreContainer from "~/components/GenreContainer";
 
 export const links: LinksFunction = () => {

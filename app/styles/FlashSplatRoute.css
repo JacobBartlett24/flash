@@ -29,6 +29,7 @@
   height: 2rem;
   transition: 0.25s background-color, 0.25s color;
   width: 100%;
+  cursor: pointer;
 }
 .selectList li:hover {
   background-color: black;
@@ -65,6 +66,9 @@
 .soloDisplay .info {
   display: flex;
   flex-direction: column;
+}
+.soloDisplay .info .purchaseButton {
+  width: 200px;
 }
 
 /*# sourceMappingURL=FlashSplatRoute.css.map */
