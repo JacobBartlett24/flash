@@ -10,23 +10,38 @@
 
   .mainFeed{
     display: grid;
-  row-gap: 3rem;
-  grid-template-rows: repeat(3, 1fr);
-  justify-content: flex-end;
+    row-gap: 3rem;
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
   }
   .title{
     color: white;
     text-decoration: none;
+    font-size: 2rem;
+  }
+  .collectionWrapper{
+    width: 1300px;
+    .icons{
+      margin-left: 5px;
+      transition: .25s color;
+    }
+    .icons:hover{
+      color: orange;
+    }
+    .titleWrapper{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
   .imgGallery{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 1500px;
     padding: 30px;
     border-radius: 15px 0  0 15px;
-    background-color: $secondaryBackgroundColor;
+    
     .imgWrapper{
       display: flex;
       justify-content: center;
@@ -36,6 +51,7 @@
       width: 200px;
       margin-right: 40px;
       border-radius: $primaryBorderRadius;
+      box-shadow: $lightShadow;
     }
   }
 }

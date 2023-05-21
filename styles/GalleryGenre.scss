@@ -1,0 +1,31 @@
+@import "utils";
+@import "FilterHeader";
+
+.galleryPage{
+  min-height: calc(100vh - $headerHeight);
+  background-color: $secondaryBackgroundColor;
+  padding: 8rem 16rem;
+
+  .galleryContainer{
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .imgWrapper{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8rem;
+    }
+    img{
+      height: 250px;
+      width: 250px;
+      margin-right: 40px;
+      border-radius: $primaryBorderRadius;
+      box-shadow: $lightShadow;
+      transition: .5s scale, .25s box-shadow;
+    }
+    img:hover{
+      scale: 1.1;
+      box-shadow: $darkShadow;
+    }
+  }
+}

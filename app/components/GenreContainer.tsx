@@ -1,4 +1,6 @@
 import { Link } from "@remix-run/react"
+import { IconContext } from "react-icons"
+import { FaArrowRight } from "react-icons/fa"
 
 type props = {
   title: string,
@@ -9,7 +11,13 @@ export default function GenreContainer({title, images}: props){
   return(
     <>
       <div className="collectionWrapper">
-        <Link className="title" to="/practice">{title}</Link>
+        <div className="titleWrapper">
+          <Link className="title" to={`/gallery/${title}`}>{title}
+            <IconContext.Provider value={{ className: "icons" }}>
+              <FaArrowRight size={20} />
+            </IconContext.Provider>
+          </Link>
+        </div>
         <div className="imgGallery">
           {images.map((image: any) => {
             return (
