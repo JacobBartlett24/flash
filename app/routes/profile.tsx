@@ -1,9 +1,8 @@
-import { ActionArgs, ActionFunction, LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node";
+import type { ActionArgs, ActionFunction, LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node";
 import styles from "../styles/ProfilePage.css"
-import { Form, useLoaderData, useOutletContext } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
 import ProfileLayout from "~/components/ProfileLayout";
-import { SupabaseOutletContext } from "~/root";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -78,7 +77,6 @@ export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
 
 export default function Profile() {
   const data = useLoaderData<typeof loader>()
-  console.log(data)
 
   return (
     <div className="profilePage">

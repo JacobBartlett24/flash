@@ -1,13 +1,12 @@
-import { Form } from "@remix-run/react";
 import { FaArrowDown, FaArrowUp, FaMoneyBillWaveAlt } from "react-icons/fa";
 import { TiSortAlphabetically} from "react-icons/ti";
 import type { filters } from "../routes/gallery.$"
 
 
 
-export default function Filter(){
+export default function Filter(filters: filters){
 
-  const handleChange = (filters: filters) => {
+  const handleChange = () => {
 
   }
 
