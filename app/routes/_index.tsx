@@ -1,4 +1,4 @@
-import { LoaderArgs, LoaderFunction, V2_MetaFunction, json, redirect } from "@remix-run/node";
+import { LoaderArgs, V2_MetaFunction, json, redirect } from "@remix-run/node";
 import type { LinksFunction } from "@remix-run/node";
 import styles from "~/styles/LandingPage.css";
 import skull from "../../public/flameSkull.png";
@@ -13,7 +13,7 @@ export const meta: V2_MetaFunction = () => {
   return [{ title: "Flash" }];
 };
 
-export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 

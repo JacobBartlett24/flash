@@ -1,8 +1,8 @@
-import type { LinksFunction, LoaderArgs, LoaderFunction } from "@remix-run/node"
+import type { LinksFunction, LoaderArgs } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
-import MyListbox, { Option, Options } from "~/components/Listbox";
+import  MyListbox, { Option } from "~/components/Listbox";
 import styles from "~/styles/FlashSplatRoute.css";
 
 
@@ -10,7 +10,7 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-export const loader: LoaderFunction = async ({ request, params }: LoaderArgs) => {
+export const loader = async ({ request, params }: LoaderArgs) => {
   const flashID = params.flashId;
 
   const response = new Response()
@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async ({ request, params }: LoaderArgs) =>
 
   const { data } = await supabase.from('UserFlash').select().eq('id', flashID).single()
 
-  return json({userFlash: data})
+  return {userFlash: data!}
 }
 
 export function ErrorBoundary ({ error }) {
@@ -46,17 +46,17 @@ const sizes = [
 ] as Option[]
 
 export default function Flash(){
-  const data = useLoaderData<typeof loader>()
+  const { userFlash } = useLoaderData<typeof loader>()
   return(
     <>
       <div className="soloDisplay">
         <div className="media">
-          {data.userFlash.img_url && <img src={data.userFlash.img_url} alt={data.userFlash.description} />}
+          {userFlash.img_url && <img src={userFlash.img_url} alt={userFlash.description!} />}
         </div>
         <div className="info">
-          <h1>{data.userFlash.title}</h1>
-          <p>{data.userFlash.description}</p>
-          <p>${data.userFlash.price}</p>
+          <h1>{userFlash.title}</h1>
+          <p>{userFlash.description}</p>
+          <p>${userFlash.price}</p>
           <MyListbox options={sizes} />          
           <button className="purchaseButton">Purchase</button>
         </div>
