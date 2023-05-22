@@ -19,7 +19,6 @@ type props = {
 
 
 export default function ProfileLayout({ galleryInfo }: props) {
-  console.log(galleryInfo)
   return (
     <>
       <div className="profileLayout">
@@ -43,7 +42,9 @@ export default function ProfileLayout({ galleryInfo }: props) {
             </p>
           </div>
         </div>
-        <span className="placeholder"></span>
+        <span className="placeholder">
+          <Link to="/upload">Upload Flash</Link>
+        </span>
         <div className="bottomSection">
           <div className="gallery">
             {galleryInfo.map((flash: userFlash) => {

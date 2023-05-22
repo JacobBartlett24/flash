@@ -64,12 +64,15 @@
   }
   .bottomSection {
     color: black;
-    padding: 5rem;
-  
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
     .gallery{
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
     }
     img{
       height: 200px;
