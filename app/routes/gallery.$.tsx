@@ -37,6 +37,8 @@ export default function GalleryGenre(){
     price: "all"
   }
 
+  //Update on change of filter
+
   useEffect(() => {
     console.log(filters)
   }, [filters])

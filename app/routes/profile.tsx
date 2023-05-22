@@ -60,7 +60,7 @@ export const action: ActionFunction = async ({ request, params }: ActionArgs) =>
   return null
 }
 
-export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
@@ -71,16 +71,16 @@ export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
     console.log(error)
   }
 
-  return data
+  return {userFlash: data}
 }
 
 
 export default function Profile() {
-  const data = useLoaderData<typeof loader>()
+  const { userFlash } = useLoaderData<typeof loader>()
 
   return (
     <div className="profilePage">
-      <ProfileLayout galleryInfo={data} />
+      <ProfileLayout galleryInfo={userFlash} />
 
       {/* <Form method="POST" className="uploadFlashForm">
         <label htmlFor="url">URL</label>
