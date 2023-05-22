@@ -8,9 +8,15 @@ type props = {
 export default function Header({ handleLogout }: props) {
   return (
     <div className="header">
-      <Link to="/">Flash</Link>
-      <Link to="/profile"><FaLaugh /></Link>
-      <button onClick={handleLogout}>Logout</button>
+      <div>
+        <Link to="/">Flash</Link>
+      </div>
+      <div className="profile">
+        <button onClick={handleLogout}>Logout</button>
+        <Link to="/profile">
+          <FaLaugh size={20}/>
+        </Link>
+      </div>
     </div>
   )
 } 

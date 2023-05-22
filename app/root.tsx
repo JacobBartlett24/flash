@@ -9,6 +9,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useRevalidator,
 } from "@remix-run/react";
 import Header from "./components/Header";
 import { SupabaseClient, createBrowserClient, createServerClient } from "@supabase/auth-helpers-remix";
@@ -57,6 +58,7 @@ export type SupabaseOutletContext = {
 
 export default function App() {
   const { env, session } = useLoaderData()
+  const revalidator = useRevalidator()
 
   const [supabase] = useState(() => createBrowserClient<Database>(env.SUPABASE_URL, env.SUPABASE_ANON_KEY))
 
@@ -66,10 +68,22 @@ export default function App() {
     const { error } = await supabase.auth.signOut()
     if (error) {
       console.log("error")
-
     }
-    return redirect("/login")
   }
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.access_token !== serverAccessToken) {
+        revalidator.revalidate()
+      }
+    });
+  
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [serverAccessToken]);
 
   return (
     <html lang="en">

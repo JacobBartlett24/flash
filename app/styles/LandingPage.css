@@ -35,4 +35,22 @@
   justify-content: space-around;
 }
 
+.showcaseSection {
+  background-color: whitesmoke;
+  min-height: 80vh;
+}
+.showcaseSection .showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.showcaseSection .showcase .image {
+  scale: 0.7;
+}
+.showcaseSection .showcase .textbox {
+  padding: 0px 15rem;
+  font-size: 1.5rem;
+}
+
 /*# sourceMappingURL=LandingPage.css.map */

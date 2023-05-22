@@ -8,6 +8,7 @@
     "sass": "sass --watch styles:app/styles"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@remix-run/css-bundle": "^1.16.0",
     "@remix-run/node": "^1.16.0",
     "@remix-run/react": "^1.16.0",
@@ -34,5 +35,11 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
   }
 }

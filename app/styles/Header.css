@@ -16,5 +16,15 @@
   color: orange;
   scale: 1.1;
 }
+.header .profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .profile a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /*# sourceMappingURL=Header.css.map */

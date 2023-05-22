@@ -26,6 +26,39 @@
 }
 .profileLayout .topSection {
   background-color: #4d4d4d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profileLayout .topSection .profilePicture {
+  height: 200px;
+  width: 200px;
+  border: 6px solid black;
+  border-radius: 50%;
+  background-color: black;
+  position: relative;
+}
+.profileLayout .topSection .profilePicture img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.profileLayout .topSection .profilePicture #profilePictureOverlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  top: 0;
+  color: transparent;
+  transition: 0.25s background-color, 0.25s color;
+  cursor: pointer;
+}
+.profileLayout .topSection .profilePicture #profilePictureOverlay:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
 }
 .profileLayout .bottomSection {
   display: grid;
@@ -34,12 +67,11 @@
   padding: 30px;
 }
 .profileLayout .bottomSection .profilePictureSection {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profileLayout .bottomSection .profilePictureSection .uploadButton {
-  position: absolute;
-  top: 300px;
-  left: 180px;
   width: 150px;
   height: 3rem;
   border-radius: 15px;
@@ -52,21 +84,6 @@
 .profileLayout .bottomSection .profilePictureSection .uploadButton:hover {
   background-color: orange;
   scale: 1.1;
-}
-.profileLayout .bottomSection .profilePictureSection .profilePicture {
-  height: 300px;
-  width: 300px;
-  border: 6px solid black;
-  position: absolute;
-  top: -170px;
-  left: 100px;
-  border-radius: 50%;
-  background-color: black;
-}
-.profileLayout .bottomSection .profilePictureSection .profilePicture img {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
 }
 .profileLayout .bottomSection .gallery {
   display: flex;

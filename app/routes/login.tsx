@@ -1,21 +1,24 @@
-import { LinksFunction } from "@remix-run/node";
-import { Form, useOutletContext } from "@remix-run/react";
-import { SupabaseOutletContext } from "~/root";
+import type { LinksFunction } from "@remix-run/node";
+import {  useOutletContext } from "@remix-run/react";
+import type { SupabaseOutletContext } from "~/root";
 import styles from "~/styles/loginSignup.css";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-export default function Login() {
+export default function Login() { 
   const { supabase } = useOutletContext<SupabaseOutletContext>();
   const handleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: "github"
+      provider: "github",
+      
     })
     if (error) {
       console.log("error")
     }
+    
+
   }
 
   const handleLogout = async () => {

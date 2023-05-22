@@ -1,96 +1,62 @@
 @import "utils";
 
 .homepage {
-  height: calc(100vh - $headerHeight);
+  min-height: calc(100vh - $headerHeight - 8rem);
   background-color: $primaryBackgroundColor;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
   width: 100%;
+  padding: 4rem 0;
+  overflow: visible;
 
-  .mainFeed {
-    height: 72vh;
-    width: 33vw;
-    background-color: black;
+  .mainFeed{
+    display: grid;
+    row-gap: 3rem;
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
+  }
+  .title{
     color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    overflow-y: scroll;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    padding: 100px 100px;
-    position: absolute;
-    top: $headerHeight;
+    text-decoration: none;
+    font-size: 2rem;
+    transition: .25s color;
   }
-
-  .card {
-    height: 7 00px;
-    width: 400px;
-    background-color: black;
-    border: 1px solid white;
-    border-radius: $primaryBorderRadius;
-    margin-bottom: 18rem;
-
-    &:last-child {
-      margin-bottom: 0rem;
+  .title:hover{
+    color: orange;
+  }
+  .collectionWrapper{
+    width: 1300px;
+    .icons{
+      margin-left: 5px;
+      transition: .25s color;
     }
-
-    .media {
-      img {
-        height: 400px;
-        width: 100%;
-        border-radius: $primaryBorderRadius $primaryBorderRadius 0 0;
-      }
-    }
-
-    .price {
-      color: green;
-    }
-
-    .desc {
-      display: grid;
-      grid-template-rows: 20px 160px 90px;
-      row-gap: 10px;
-      height: 300px;
-      padding: 10px;
-    }
-
-    svg {
-      transition: .25s color, .5s scale;
-    }
-
-    .icons {
-      margin: 20px 10px 0 0;
-      cursor: pointer;
-    }
-
-    .cart {
-      margin-left: 90px;
-    }
-
-    svg:hover {
+    .icons:hover{
       color: orange;
-      scale: 1.1;
+    }
+    .titleWrapper{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
   }
-
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: black;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: orange;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: darkorange;
+  .imgGallery{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 15px 0  0 15px;
+    
+    .imgWrapper{
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      height: 200px;
+      width: 200px;
+      margin-right: 40px;
+      border-radius: $primaryBorderRadius;
+      box-shadow: $lightShadow;
+    }
   }
 }
 
