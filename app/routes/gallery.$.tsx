@@ -18,17 +18,17 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-export const loader: LoaderFunction = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
   const { data } = await supabase.from('UserFlash').select()
 
-  return json({ userFlash: data })
+  return {userFlash: data ?? []}
 }
 
 export default function GalleryGenre(){
-  const data = useLoaderData<typeof loader>()
+  const { userFlash } = useLoaderData<typeof loader>()
   
   const filters: filters = {
     genre: "all",
@@ -36,6 +36,8 @@ export default function GalleryGenre(){
     alphabetical: "all",
     price: "all"
   }
+
+  //Update on change of filter
 
   useEffect(() => {
     console.log(filters)
@@ -46,7 +48,7 @@ export default function GalleryGenre(){
       <div className="galleryPage">
         <FilterHeader filters={filters}/>
         <div className="galleryContainer">
-          {data.userFlash.map((image: any) => {
+          {userFlash.map((image: any) => {
             return (
               <div className="imgWrapper" key={image.id}>
                 <Link to={`/flash/${image.id}`}>
