@@ -44,6 +44,12 @@ export default function Index() {
           </Link>
         </div>
       </div>
+      <div className="showcaseSection">
+        ShowCase
+      </div>
+      <div className="">
+        SomethingElse
+      </div>
     </div>
   );
 }
