@@ -1,41 +1,22 @@
 @import "utils";
 
 .profilePage {
-  height: calc(100vh - $headerHeight);
-  background-color: $primaryBackgroundColor;
-  color: white;
-  font-weight: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-
-  .uploadFlashForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
 }
 
 .profileLayout {
-  background-color: black;
-  height: 100%;
-  width: 100%;
   display: grid;
-  grid-template-rows: 30vh 1fr;
-  position: relative;
-
-
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40vh 1fr;
   .topSection {
-    background-color: $thirdBackgroundColor;
+    background-color: black;
+    padding: 2rem;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    color: white;
     align-items: center;
     .profilePicture {
-      height: 200px;
-      width: 200px;
+      max-height: 200px;
+      max-width: 200px;
       border: 6px solid black;
       border-radius: 50%;
       background-color: black;
@@ -63,65 +44,37 @@
         color: white
       }
     }
-  }
-
-  .bottomSection {
-    display: grid;
-    grid-template-columns: 22vw 1fr;
-    justify-content: center;
-    padding: 30px;
-
-    .profilePictureSection {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .uploadButton {
-        width: 150px;
-        height: 3rem;
-        border-radius: 15px;
-        transition: .5s scale, .25s background-color;
-        border: none;
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 1.5rem;
-        cursor: pointer;
+    .profileInfo{
+      padding: 2rem;
+      h1{
+        font-weight: 300;
+        font-size: 2rem;
       }
-
-      .uploadButton:hover {
-        background-color: orange;
-        scale: 1.1;
+      h2{
+        font-weight: 200;
       }
-
+      p{
+        
+      }     
     }
-
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 100px;
-
-      h1 {
-        margin-bottom: 6rem;
-      }
-
-      .galleryImages {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        margin-bottom: 10rem;
-
-        img {
-          height: 200px;
-          width: 200px;
-          border-radius: $primaryBorderRadius;
-          transition: .5s scale;
-        }
-
-        img:hover {
-          scale: 1.1;
-        }
-      }
-
+    
+  }
+  .placeholder{
+    background-color: black;
+  }
+  .bottomSection {
+    color: black;
+    padding: 5rem;
+  
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
+    }
+    img{
+      height: 200px;
+      width: 200px;
+      border-radius: $primaryBorderRadius;
     }
   }
 }

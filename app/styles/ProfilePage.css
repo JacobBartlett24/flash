@@ -1,38 +1,19 @@
-.profilePage {
-  height: calc(100vh - 60px);
-  background-color: #1e1e1e;
-  color: white;
-  font-weight: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-}
-.profilePage .uploadFlashForm {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .profileLayout {
-  background-color: black;
-  height: 100%;
-  width: 100%;
   display: grid;
-  grid-template-rows: 30vh 1fr;
-  position: relative;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40vh 1fr;
 }
 .profileLayout .topSection {
-  background-color: #4d4d4d;
+  background-color: black;
+  padding: 2rem;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  color: white;
   align-items: center;
 }
 .profileLayout .topSection .profilePicture {
-  height: 200px;
-  width: 200px;
+  max-height: 200px;
+  max-width: 200px;
   border: 6px solid black;
   border-radius: 50%;
   background-color: black;
@@ -60,55 +41,32 @@
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
 }
+.profileLayout .topSection .profileInfo {
+  padding: 2rem;
+}
+.profileLayout .topSection .profileInfo h1 {
+  font-weight: 300;
+  font-size: 2rem;
+}
+.profileLayout .topSection .profileInfo h2 {
+  font-weight: 200;
+}
+.profileLayout .placeholder {
+  background-color: black;
+}
 .profileLayout .bottomSection {
-  display: grid;
-  grid-template-columns: 22vw 1fr;
-  justify-content: center;
-  padding: 30px;
-}
-.profileLayout .bottomSection .profilePictureSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.profileLayout .bottomSection .profilePictureSection .uploadButton {
-  width: 150px;
-  height: 3rem;
-  border-radius: 15px;
-  transition: 0.5s scale, 0.25s background-color;
-  border: none;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.profileLayout .bottomSection .profilePictureSection .uploadButton:hover {
-  background-color: orange;
-  scale: 1.1;
+  color: black;
+  padding: 5rem;
 }
 .profileLayout .bottomSection .gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 100px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
 }
-.profileLayout .bottomSection .gallery h1 {
-  margin-bottom: 6rem;
-}
-.profileLayout .bottomSection .gallery .galleryImages {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-around;
-  margin-bottom: 10rem;
-}
-.profileLayout .bottomSection .gallery .galleryImages img {
+.profileLayout .bottomSection img {
   height: 200px;
   width: 200px;
   border-radius: 15px;
-  transition: 0.5s scale;
-}
-.profileLayout .bottomSection .gallery .galleryImages img:hover {
-  scale: 1.1;
 }
 
 /*# sourceMappingURL=ProfilePage.css.map */
