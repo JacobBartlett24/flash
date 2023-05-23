@@ -56,6 +56,11 @@
       margin-right: 40px;
       border-radius: $primaryBorderRadius;
       box-shadow: $lightShadow;
+      transition: .25s scale;
+    }
+
+    img:hover{
+      scale: 1.1;
     }
   }
 }

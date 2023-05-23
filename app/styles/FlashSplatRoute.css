@@ -50,7 +50,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   height: calc(100vh - 60px);
-  background-color: #3c3c3c;
+  background-color: #1e1e1e;
   color: white;
 }
 .soloDisplay img {
