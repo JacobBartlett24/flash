@@ -5,10 +5,11 @@
   flex-direction: column;
   height: 30rem;
   justify-content: space-between;
-  background-color: black;
+  background-color: $secondaryBackgroundColor;
   padding: 3rem 5rem;
   color: white;
   border-radius: $primaryBorderRadius;
+  box-shadow: $darkShadow;
   .field{
     display: flex;
     flex-direction: column;
@@ -20,4 +21,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $primaryBackgroundColor;
 }
