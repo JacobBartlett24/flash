@@ -1,0 +1,23 @@
+@import "utils";
+
+.uploadForm{
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  justify-content: space-between;
+  background-color: black;
+  padding: 3rem 5rem;
+  color: white;
+  border-radius: $primaryBorderRadius;
+  .field{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.uploadPage{
+  height: calc(100vh - $headerHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
