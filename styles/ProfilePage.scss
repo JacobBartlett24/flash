@@ -60,10 +60,26 @@
     
   }
   .placeholder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
+    a{
+      background-color: white;
+      padding: .5rem 2rem;
+      text-decoration: none;
+      color: black;
+      transition: .25s background-color, .25s color;
+      border-radius: $primaryBorderRadius;
+    }
+    a:hover{
+      background-color: $secondaryBackgroundColor;
+      color: white;
+    }
   }
   .bottomSection {
-    color: black;
+    color: white;
+    background-color: $primaryBackgroundColor;
     grid-column: 1 / 3;
     display: flex;
     justify-content: center;
@@ -78,6 +94,12 @@
       height: 200px;
       width: 200px;
       border-radius: $primaryBorderRadius;
+      box-shadow: $lightShadow;
+      transition: .25s box-shadow, .25s scale;
+    }
+    img:hover{
+      box-shadow: $darkShadow;
+      scale:1.1;
     }
   }
 }

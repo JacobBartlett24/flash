@@ -1,5 +1,5 @@
-import { ActionArgs, LinksFunction, unstable_parseMultipartFormData } from "@remix-run/node";
-import { Form } from "@remix-run/react";
+import { ActionArgs, LinksFunction, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
+import { Form, useActionData } from "@remix-run/react";
 import createServerSupabase from "utils/supabase.server";
 import styles from "../styles/UploadForm.css"
 
@@ -17,41 +17,35 @@ export const links: LinksFunction = () => {
 // }
 
 export const action = async ({ request, params }: ActionArgs) => {
-  let body = await request.formData();
-  let flashName = body.get("flashName")?.toString();
-  let price: number | null = parseInt(body.get("price")?.toString() || "0");
-  let imgUrl = body.get("imgUrl")?.toString();
-  let description = body.get("description")?.toString();
-  let quantity: number | null = parseInt(body.get("quantity")?.toString() || "0");
-
+  
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
-
   
-  let session = (await supabase.auth.getSession()).data.session?.user.id;
+  const session = (await supabase.auth.getSession()).data.session?.user.id;
+  
+  const uploadHandler = unstable_createMemoryUploadHandler();
+  
+  const formData = await unstable_parseMultipartFormData(request, uploadHandler);
 
-  let { error } = await supabase.from('UserFlash').insert(
-    {
-      title: flashName,
-      price: price,
-      img_url: imgUrl,
-      description: description,
-      quantity: quantity,
-      user_id: session
-    }
-  )
+  const filePaths = formData.get("imgUrl")?.toString();
 
-  if (error) {
-    console.log(error)
-  }
+  console.log(JSON.stringify(formData.get("imgUrl"),null,2))
+
+
+  console.log("supabase upsert successful");
 
   return null;
 }
 
 export default function UploadRoute(){
+  const actionData = useActionData();
+  console.log(actionData)
   return (
     <div className="uploadPage">
-      <Form className="uploadForm" method="post">
+      <Form
+        className="uploadForm"
+        method="post"
+        encType="multipart/form-data">
         <div className="field">
           <label>Name of piece:</label>
           <input type="text" name="flashName"/>
@@ -73,6 +67,7 @@ export default function UploadRoute(){
           <input type="number" name="quantity"/>
         </div>
         <button type="submit">Submit</button>
+        {actionData ? `File Uploaded: ${JSON.stringify(actionData)}` : null}
       </Form>
     </div>
   )

@@ -13,7 +13,10 @@ export const loader = async ({ request }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
-  const { data } = await supabase.from('UserFlash').select()
+  const { data } = await supabase
+                          .from('UserFlash')
+                          .select()
+                          .limit(4)
 
   return { userFlash: data }
 }

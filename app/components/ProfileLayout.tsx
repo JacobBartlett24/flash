@@ -49,7 +49,9 @@ export default function ProfileLayout({ galleryInfo }: props) {
           <div className="gallery">
             {galleryInfo.map((flash: userFlash) => {
               return (
-                <img key={flash.id} src={flash.img_url} alt="" />
+                <Link key={flash.id} to={`/flash/${flash.id}`}>
+                  <img  src={flash.img_url} alt="" />
+                </Link>
               )
             })}
           </div>
