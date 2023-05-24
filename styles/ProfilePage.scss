@@ -8,7 +8,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40vh 1fr;
   .topSection {
-    background-color: black;
+    background-color: $primaryBackgroundColor;;
     padding: 2rem;
     display: flex;
     flex-direction: row;
@@ -63,7 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: $primaryBackgroundColor;
     a{
       background-color: white;
       padding: .5rem 2rem;
@@ -79,7 +79,7 @@
   }
   .bottomSection {
     color: white;
-    background-color: $primaryBackgroundColor;
+    background-color: $secondaryBackgroundColor;
     grid-column: 1 / 3;
     display: flex;
     justify-content: center;
