@@ -14,7 +14,6 @@ export const loader = async ({ request }: LoaderArgs) => {
   const supabase = createServerSupabase({ request, response })
 
   const { data } = await supabase.from('Flash').select().limit(5)
-  console.log(data)
   return { userFlash: data }
 }
 

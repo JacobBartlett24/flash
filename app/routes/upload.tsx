@@ -1,50 +1,75 @@
 import {
-  ActionArgs,
-  LinksFunction,
-  unstable_createMemoryUploadHandler,
-  unstable_parseMultipartFormData,
-} from '@remix-run/node'
-import { Form, useActionData, useOutletContext } from '@remix-run/react'
+  Form,
+  useActionData,
+  useLoaderData,
+  useOutletContext,
+} from '@remix-run/react'
 import createServerSupabase from 'utils/supabase.server'
 import styles from '../styles/UploadForm.css'
-import { SupabaseOutletContext } from '~/root'
+import type {
+  ActionArgs,
+  LinksFunction,
+  LoaderArgs,
+  json,
+} from '@remix-run/node'
+import type { SupabaseOutletContext } from '~/root'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
 }
 
-// async function uploadFile(file, supabase, session) {
-//   const { data, error } = await supabase.storage.from('flash').upload(`${session}/${file}`, file)
-//   if (error) {
-//     // Handle error
-//   } else {
-//     // Handle success
-//   }
-// }
-
 export const action = async ({ request, params }: ActionArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
+  const formDate = await request.formData()
+  const flashName = formDate.get('flashName')?.toString()
+  const price = parseInt(formDate.get('price')?.toString() || '0')
+  const imgUrl = formDate.get('imgUrl')?.toString()
+  const description = formDate.get('description')?.toString()
+
+  const session = (await supabase.auth.getSession()).data.session?.user.id
+
+  const { error } = await supabase.from('Flash').insert({
+    name: flashName,
+    price: price,
+    img_url: imgUrl,
+    description: description,
+    img_filepath: `${session}/${flashName}`,
+  })
+
+  console.log(error)
+
   return null
+}
+
+export const loader = async ({ request }: LoaderArgs) => {
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
+
+  const session = (await supabase.auth.getSession()).data.session?.user.id
+
+  return session
 }
 
 export default function UploadRoute() {
   const actionData = useActionData()
-  console.log(actionData)
+  const session = useLoaderData<typeof loader>()
 
   const { supabase } = useOutletContext<SupabaseOutletContext>()
 
   const handleImageSubmit = async (e: any) => {
     let image = e.target.files[0] as File
-    supabase
-      .storage
-      .from("flash")
-      .upload(`test/${image.name}`, image,
-      {
+    const { data, error } = await supabase.storage
+      .from('flash')
+      .upload(`${session}/${image.name}`, image, {
         cacheControl: '3600',
-			  upsert: false
       })
+    if (error) {
+      console.log(error)
+    } else {
+      console.log(data)
+    }
   }
 
   return (
