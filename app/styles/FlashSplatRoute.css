@@ -70,5 +70,17 @@
 .soloDisplay .info .purchaseButton {
   width: 200px;
 }
+.soloDisplay .purchaseButton {
+  background-color: white;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  color: black;
+  transition: 0.25s background-color, 0.25s color;
+  border-radius: 15px;
+}
+.soloDisplay .purchaseButton:hover {
+  background-color: #3c3c3c;
+  color: white;
+}
 
 /*# sourceMappingURL=FlashSplatRoute.css.map */

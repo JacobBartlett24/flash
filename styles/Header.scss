@@ -32,6 +32,18 @@
       align-items: center;
     }
   }
+  .logoutButton{
+    background-color: white;
+    padding: .5rem 2rem;
+    text-decoration: none;
+    color: black;
+    transition: .25s background-color, .25s color;
+    border-radius: $primaryBorderRadius;
+    &:hover{
+      background-color: $secondaryBackgroundColor;
+      color: white;
+    }
+  }
 }
 
 // linear-gradient(black 10%, #1e1e1e );
