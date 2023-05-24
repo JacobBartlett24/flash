@@ -6,31 +6,28 @@ import styles from '~/styles/Homepage.css'
 import GenreContainer from '~/components/GenreContainer'
 
 export const links: LinksFunction = () => {
-    return [{ rel: 'stylesheet', href: styles }]
+  return [{ rel: 'stylesheet', href: styles }]
 }
 
 export const loader = async ({ request }: LoaderArgs) => {
-    const response = new Response()
-    const supabase = createServerSupabase({ request, response })
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
 
-    const { data } = await supabase.from('Flash').select().limit(5)
-    console.log(data)
-    return { userFlash: data }
+  const { data } = await supabase.from('Flash').select().limit(5)
+  console.log(data)
+  return { userFlash: data }
 }
 
 export default function Homepage() {
-    const { userFlash } = useLoaderData<typeof loader>()
-    return (
-        <div className="homepage">
-            <div className="mainFeed">
-                <GenreContainer title="popular" images={userFlash} />
-                <GenreContainer
-                    title="american Traditional"
-                    images={userFlash}
-                />
-                <GenreContainer title="gothic" images={userFlash} />
-                <GenreContainer title="new releases" images={userFlash} />
-            </div>
-        </div>
-    )
+  const { userFlash } = useLoaderData<typeof loader>()
+  return (
+    <div className="homepage">
+      <div className="mainFeed">
+        <GenreContainer title="popular" images={userFlash} />
+        <GenreContainer title="american Traditional" images={userFlash} />
+        <GenreContainer title="gothic" images={userFlash} />
+        <GenreContainer title="new releases" images={userFlash} />
+      </div>
+    </div>
+  )
 }

@@ -1,7 +1,3 @@
-export default function FeedRoute(){
-  return(
-    <div>
-      feed
-    </div>
-  )
+export default function FeedRoute() {
+  return <div>feed</div>
 }

@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Listbox } from '@headlessui/react'
 
-
 export type Option = {
   id: number
   name: string
-  unavailable: boolean  
+  unavailable: boolean
 }
 
-export default function MyListbox({options}: Option[]) {
+export default function MyListbox({ options }: Option[]) {
   const [option, setoption] = useState(options[0])
 
   return (

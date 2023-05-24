@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
-import { FaLaugh } from "react-icons/fa";
+import { Link } from '@remix-run/react'
+import { FaLaugh } from 'react-icons/fa'
 
 type props = {
   handleLogout: () => void
@@ -14,9 +14,9 @@ export default function Header({ handleLogout }: props) {
       <div className="profile">
         <button onClick={handleLogout}>Logout</button>
         <Link to="/profile">
-          <FaLaugh size={20}/>
+          <FaLaugh size={20} />
         </Link>
       </div>
     </div>
   )
-} 
+}

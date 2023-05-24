@@ -1,5 +1,5 @@
-export default function NavBar(){
-  return(
+export default function NavBar() {
+  return (
     <div className="navbar">
       <ul>
         <li>Home</li>

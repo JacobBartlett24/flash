@@ -1,30 +1,25 @@
-import { FaArrowDown, FaArrowUp, FaMoneyBillWaveAlt } from "react-icons/fa";
-import { TiSortAlphabetically} from "react-icons/ti";
-import type { filters } from "../routes/gallery.$"
+import { FaArrowDown, FaArrowUp, FaMoneyBillWaveAlt } from 'react-icons/fa'
+import { TiSortAlphabetically } from 'react-icons/ti'
+import type { filters } from '../routes/gallery.$'
 
+export default function Filter(filters: filters) {
+  const handleChange = () => {}
 
-
-export default function Filter(filters: filters){
-
-  const handleChange = () => {
-
-  }
-
-  return(
+  return (
     <>
       <div className="filterWrapper">
         <a href="#" className="price">
-          <FaMoneyBillWaveAlt size={30}/>
+          <FaMoneyBillWaveAlt size={30} />
           <div className="filter">
-            <FaArrowUp size={15}/>
-            <FaArrowDown size={15}/>
+            <FaArrowUp size={15} />
+            <FaArrowDown size={15} />
           </div>
         </a>
         <a href="#" className="alphabetical">
-          <TiSortAlphabetically size={30}/>
+          <TiSortAlphabetically size={30} />
           <div className="filter">
-            <FaArrowUp size={15}/>
-            <FaArrowDown size={15}/>
+            <FaArrowUp size={15} />
+            <FaArrowDown size={15} />
           </div>
         </a>
         <select>
