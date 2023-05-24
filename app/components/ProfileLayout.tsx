@@ -1,15 +1,18 @@
-import { Link } from '@remix-run/react'
+import { Link, useOutletContext } from '@remix-run/react'
 import FlashBox from './FlashBox'
+import { SupabaseOutletContext } from '~/root'
+import { useEffect, useState } from 'react'
 
 type userFlash = {
+  color_style: string | null
   created_at: string | null
   description: string | null
   id: number
+  img_filepath: string | null
   img_url: string | null
+  name: string | null
   price: number | null
   quantity: number | null
-  title: string | null
-  user_id: string | null
 }
 
 type props = {
@@ -17,6 +20,8 @@ type props = {
 }
 
 export default function ProfileLayout({ galleryInfo }: props) {
+  const { supabase } = useOutletContext<SupabaseOutletContext>()
+
   return (
     <>
       <div className="profileLayout">
@@ -51,7 +56,15 @@ export default function ProfileLayout({ galleryInfo }: props) {
             {galleryInfo.map((flash: userFlash) => {
               return (
                 <Link key={flash.id} to={`/flash/${flash.id}`}>
-                  <img src={flash.img_url as string} alt="" />
+                  <img
+                    src={
+                      supabase.storage
+                        .from('flash')
+                        .getPublicUrl(flash.img_filepath as string).data
+                        .publicUrl
+                    }
+                    alt=""
+                  />
                 </Link>
               )
             })}

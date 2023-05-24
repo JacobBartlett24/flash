@@ -76,7 +76,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 
   let session = (await supabase.auth.getSession()).data.session?.user.id
   let { data, error } = await supabase
-    .from('UserFlash')
+    .from('Flash')
     .select('*')
     .eq('user_id', session)
 
