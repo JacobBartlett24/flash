@@ -1,6 +1,7 @@
 import {
   Form,
   useActionData,
+  useFetcher,
   useLoaderData,
   useOutletContext,
 } from '@remix-run/react'
@@ -13,6 +14,8 @@ import type {
   json,
 } from '@remix-run/node'
 import type { SupabaseOutletContext } from '~/root'
+import { FunctionsFetchError } from '@supabase/supabase-js'
+import { useState } from 'react'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
@@ -23,19 +26,19 @@ export const action = async ({ request, params }: ActionArgs) => {
   const supabase = createServerSupabase({ request, response })
 
   const formDate = await request.formData()
-  const flashName = formDate.get('flashName')?.toString()
+  const flashName = formDate.get('name')?.toString()
   const price = parseInt(formDate.get('price')?.toString() || '0')
-  const imgUrl = formDate.get('imgUrl')?.toString()
   const description = formDate.get('description')?.toString()
+  const quantity = parseInt(formDate.get('quantity')?.toString() || '0')
 
   const session = (await supabase.auth.getSession()).data.session?.user.id
 
   const { error } = await supabase.from('Flash').insert({
     name: flashName,
     price: price,
-    img_url: imgUrl,
     description: description,
     img_filepath: `${session}/${flashName}`,
+    quantity: quantity,
   })
 
   console.log(error)
@@ -55,49 +58,95 @@ export const loader = async ({ request }: LoaderArgs) => {
 export default function UploadRoute() {
   const actionData = useActionData()
   const session = useLoaderData<typeof loader>()
+  const fetcher = useFetcher()
+
+  const [file, setFile] = useState<File | null>(null)
+  const [name, setName] = useState<string>('')
+  const [price, setPrice] = useState<number>(0)
+  const [description, setDescription] = useState<string>('')
+  const [quantity, setQuantity] = useState<number>(0)
 
   const { supabase } = useOutletContext<SupabaseOutletContext>()
 
-  const handleImageSubmit = async (e: any) => {
-    let image = e.target.files[0] as File
+  const handleFormSubmit = async () => {
     const { data, error } = await supabase.storage
       .from('flash')
-      .upload(`${session}/${image.name}`, image, {
+      .upload(`${session}/${name}`, file!, {
         cacheControl: '3600',
       })
     if (error) {
       console.log(error)
     } else {
-      console.log(data)
+      fetcher.submit(
+        {
+          name: name,
+          price: price as unknown as string,
+          description: description,
+          quantity: quantity as unknown as string,
+        },
+        {
+          method: 'post',
+        }
+      )
+      console.log('success')
     }
   }
 
   return (
     <div className="uploadPage">
-      <Form className="uploadForm" method="post" encType="multipart/form-data">
+      <fetcher.Form
+        className="uploadForm"
+        method="post"
+        encType="multipart/form-data"
+      >
         <div className="field">
           <label>Name of piece:</label>
-          <input type="text" name="flashName" />
+          <input
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            name="flashName"
+            required
+          />
         </div>
         <div className="field">
           <label>Price:</label>
-          <input type="number" name="price" />
+          <input
+            onChange={(e) => setPrice(e.target.value as unknown as number)}
+            type="number"
+            name="price"
+            required
+          />
         </div>
         <div className="field">
           <label>Image URL:</label>
-          <input onChange={handleImageSubmit} type="file" name="imgUrl" />
+          <input
+            onChange={(e) => setFile(e.target.files[0])}
+            type="file"
+            name="imgUrl"
+            required
+          />
         </div>
         <div className="field">
           <label>Description:</label>
-          <textarea name="description" />
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+          />
         </div>
         <div className="field">
           <label>Quantity</label>
-          <input type="number" name="quantity" />
+          <input
+            onChange={(e) => setQuantity(e.target.value as unknown as number)}
+            type="number"
+            name="quantity"
+            required
+          />
         </div>
-        <button type="submit">Submit</button>
+        <button onClick={handleFormSubmit} type="button">
+          Submit
+        </button>
         {actionData ? `File Uploaded: ${JSON.stringify(actionData)}` : null}
-      </Form>
+      </fetcher.Form>
     </div>
   )
 }
