@@ -1,8 +1,9 @@
 import type { LinksFunction, LoaderArgs } from '@remix-run/node'
 import { json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { useLoaderData, useOutletContext } from '@remix-run/react'
 import createServerSupabase from 'utils/supabase.server'
 import MyListbox, { Option } from '~/components/Listbox'
+import { SupabaseOutletContext } from '~/root'
 import styles from '~/styles/FlashSplatRoute.css'
 
 export const links: LinksFunction = () => {
@@ -48,17 +49,26 @@ const sizes = [
 ] as Option[]
 
 export default function Flash() {
+  const { supabase } = useOutletContext<SupabaseOutletContext>()
+
   const { userFlash } = useLoaderData<typeof loader>()
   return (
     <>
       <div className="soloDisplay">
         <div className="media">
-          {userFlash.img_url && (
-            <img src={userFlash.img_url} alt={userFlash.description!} />
-          )}
+          {
+            <img
+              src={
+                supabase.storage
+                  .from('flash')
+                  .getPublicUrl(userFlash.img_filepath as string).data.publicUrl
+              }
+              alt={userFlash.description!}
+            />
+          }
         </div>
         <div className="info">
-          <h1>{userFlash.title}</h1>
+          <h1>{userFlash.name}</h1>
           <p>{userFlash.description}</p>
           <p>${userFlash.price}</p>
           <MyListbox options={sizes} />

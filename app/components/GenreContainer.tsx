@@ -1,6 +1,7 @@
-import { Link } from '@remix-run/react'
+import { Link, useOutletContext } from '@remix-run/react'
 import { IconContext } from 'react-icons'
 import { FaArrowRight } from 'react-icons/fa'
+import { SupabaseOutletContext } from '~/root'
 
 type props = {
   title: string
@@ -8,6 +9,8 @@ type props = {
 }
 
 export default function GenreContainer({ title, images }: props) {
+  const { supabase } = useOutletContext<SupabaseOutletContext>()
+
   return (
     <>
       <div className="collectionWrapper">
@@ -20,14 +23,22 @@ export default function GenreContainer({ title, images }: props) {
           </Link>
         </div>
         <div className="imgGallery">
-          {images.map((image: any) => {
+          {images.map((userFlash: any) => {
             return (
               <Link
-                to={`/flash/${image.id}`}
+                to={`/flash/${userFlash.id}`}
                 className="imgWrapper"
-                key={image.id}
+                key={userFlash.id}
               >
-                <img src={image.img_url} alt={image.description}></img>
+                <img
+                  src={
+                    supabase.storage
+                      .from('flash')
+                      .getPublicUrl(userFlash.img_filepath as string).data
+                      .publicUrl
+                  }
+                  alt={userFlash.description!}
+                />
               </Link>
             )
           })}
