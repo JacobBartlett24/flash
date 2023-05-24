@@ -4,9 +4,10 @@ import {
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,
 } from '@remix-run/node'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, useActionData, useOutletContext } from '@remix-run/react'
 import createServerSupabase from 'utils/supabase.server'
 import styles from '../styles/UploadForm.css'
+import { SupabaseOutletContext } from '~/root'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
@@ -25,24 +26,27 @@ export const action = async ({ request, params }: ActionArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
-  const session = (await supabase.auth.getSession()).data.session?.user.id
-
-  const uploadHandler = unstable_createMemoryUploadHandler()
-
-  const formData = await unstable_parseMultipartFormData(request, uploadHandler)
-
-  const filePaths = formData.get('imgUrl')?.toString()
-
-  console.log(JSON.stringify(formData.get('imgUrl'), null, 2))
-
-  console.log('supabase upsert successful')
-
   return null
 }
 
 export default function UploadRoute() {
   const actionData = useActionData()
   console.log(actionData)
+
+  const { supabase } = useOutletContext<SupabaseOutletContext>()
+
+  const handleImageSubmit = async (e: any) => {
+    let image = e.target.files[0] as File
+    supabase
+      .storage
+      .from("flash")
+      .upload(`test/${image.name}`, image,
+      {
+        cacheControl: '3600',
+			  upsert: false
+      })
+  }
+
   return (
     <div className="uploadPage">
       <Form className="uploadForm" method="post" encType="multipart/form-data">
@@ -56,7 +60,7 @@ export default function UploadRoute() {
         </div>
         <div className="field">
           <label>Image URL:</label>
-          <input type="file" name="imgUrl" />
+          <input onChange={handleImageSubmit} type="file" name="imgUrl" />
         </div>
         <div className="field">
           <label>Description:</label>
