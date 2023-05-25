@@ -1,7 +1,8 @@
 import { Link, useOutletContext } from '@remix-run/react'
 import FlashBox from './FlashBox'
 import { SupabaseOutletContext } from '~/root'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import Modal from './Modal'
 
 type userFlash = {
   color_style: string | null
@@ -22,16 +23,28 @@ type props = {
 export default function ProfileLayout({ galleryInfo }: props) {
   const { supabase } = useOutletContext<SupabaseOutletContext>()
 
+  const [modal, enableModal] = useState<boolean>(true)
+  const [height, setHeight] = useState(0)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    setHeight(ref.current!.clientHeight)
+    console.log(height)
+  }, [height])
+
   return (
     <>
-      <div className="profileLayout">
+      <Modal height={height} enableModal={modal} />
+      <div className="profileLayout" ref={ref}>
         <div className="topSection">
           <div className="profilePicture">
             <img
               src="https://cdn.midjourney.com/1ff82f10-e3bb-4728-9bc3-74af280ae53f/0_2.png"
               alt="profilePicture"
             />
-            <div id="profilePictureOverlay">Change picture</div>
+            <div onClick={() => enableModal(!modal)} id="profilePictureOverlay">
+              Change picture
+            </div>
           </div>
           <div className="profileInfo">
             <h1 className="displayName">Jakey</h1>

@@ -1,4 +1,5 @@
 .profileLayout {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40vh 1fr;
@@ -93,6 +94,27 @@
 .profileLayout .bottomSection img:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   scale: 1.1;
+}
+
+.modalBackground {
+  width: 100%;
+  position: absolute;
+  background-color: black;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.modalBackground .modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100%;
+  width: 100%;
 }
 
 /*# sourceMappingURL=ProfilePage.css.map */

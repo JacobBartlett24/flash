@@ -1,9 +1,8 @@
 @import "utils";
 
-.profilePage {
-}
 
 .profileLayout {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40vh 1fr;
@@ -101,5 +100,29 @@
       box-shadow: $darkShadow;
       scale:1.1;
     }
+  }
+}
+
+.modalBackground{
+  width: 100%;
+  position: absolute;
+  background-color: black;
+  opacity: .6;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  .modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    width: 100%;
+  }
+  .modalContent{
+    
   }
 }
