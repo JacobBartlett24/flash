@@ -34,7 +34,7 @@ export default function ProfileLayout({ galleryInfo }: props) {
 
   return (
     <>
-      <Modal height={height} enableModal={modal} />
+      <Modal height={height} enableModal={enableModal} modal={modal} />
       <div className="profileLayout" ref={ref}>
         <div className="topSection">
           <div className="profilePicture">
