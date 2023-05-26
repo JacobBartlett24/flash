@@ -1,6 +1,6 @@
 import { FaArrowDown, FaArrowUp, FaMoneyBillWaveAlt } from 'react-icons/fa'
 import { TiSortAlphabetically } from 'react-icons/ti'
-import type { filters } from '../routes/gallery.$'
+import type { filters } from '../routes/gallery.$genre'
 
 export default function Filter(filters: filters) {
   const handleChange = () => {}
