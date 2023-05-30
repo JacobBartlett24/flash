@@ -18,11 +18,14 @@ export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request, params }: LoaderArgs) => {
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
 
-  const { data } = await supabase.from('Flash').select()
+  const { data } = await supabase
+    .from('Flash')
+    .select()
+    .eq(`tags->${params.genre}`, true)
 
   return { userFlash: data ?? [] }
 }
@@ -37,12 +40,6 @@ export default function GalleryGenre() {
     alphabetical: 'all',
     price: 'all',
   }
-
-  //Update on change of filter
-
-  useEffect(() => {
-    console.log(filters)
-  }, [filters])
 
   return (
     <>

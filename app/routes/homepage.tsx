@@ -23,9 +23,10 @@ export default function Homepage() {
     <div className="homepage">
       <div className="mainFeed">
         <GenreContainer title="popular" images={userFlash} />
-        <GenreContainer title="american Traditional" images={userFlash} />
+        <GenreContainer title="american traditonal" images={userFlash} />
         <GenreContainer title="gothic" images={userFlash} />
-        <GenreContainer title="new releases" images={userFlash} />
+        <GenreContainer title="linework" images={userFlash} />
+        <GenreContainer title="newreleases" images={userFlash} />
       </div>
     </div>
   )
