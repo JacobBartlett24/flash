@@ -99,8 +99,7 @@
 .modalBackground {
   width: 100%;
   position: absolute;
-  background-color: black;
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
   z-index: 100;
@@ -111,10 +110,37 @@
 .modalBackground .modal {
   display: flex;
   justify-content: center;
-  align-items: center;
-  color: white;
+  align-items: flex-start;
+  padding-top: 20vh;
+  color: black;
   height: 100%;
   width: 100%;
+  opacity: 1;
+  position: relative;
+  z-index: 1001;
+}
+.modalBackground .modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  color: red;
+  padding: 5px;
+}
+.modalBackground .modalContent {
+  background-color: white;
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.modalBackground .modalContent input {
+  margin-top: 10rem;
+}
+.modalBackground .modalBody {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=ProfilePage.css.map */
