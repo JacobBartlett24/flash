@@ -1,7 +1,7 @@
 import { Link, useOutletContext } from '@remix-run/react'
 import FlashBox from './FlashBox'
 import { SupabaseOutletContext } from '~/root'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import Modal from './Modal'
 
 type userFlash = {
@@ -68,17 +68,19 @@ export default function ProfileLayout({ galleryInfo }: props) {
           <div className="gallery">
             {galleryInfo.map((flash: userFlash) => {
               return (
-                <Link key={flash.id} to={`/flash/${flash.id}`}>
-                  <img
-                    src={
-                      supabase.storage
-                        .from('flash')
-                        .getPublicUrl(flash.img_filepath as string).data
-                        .publicUrl
-                    }
-                    alt=""
-                  />
-                </Link>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Link key={flash.id} to={`/flash/${flash.id}`}>
+                    <img
+                      src={
+                        supabase.storage
+                          .from('flash')
+                          .getPublicUrl(flash.img_filepath as string).data
+                          .publicUrl
+                      }
+                      alt=""
+                    />
+                  </Link>
+                </Suspense>
               )
             })}
           </div>
