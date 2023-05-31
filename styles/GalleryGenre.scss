@@ -13,7 +13,9 @@
     .imgWrapper{
       display: flex;
       justify-content: center;
+      flex-direction: column;
       margin-bottom: 8rem;
+      max-width: 250px;
     }
     img{
       min-height: 250px;
@@ -28,6 +30,30 @@
     img:hover{
       scale: 1.1;
       box-shadow: $darkShadow;
+    }
+    .flashInfo{
+      
+      .flashName{
+        color: white;
+        font-weight: 100;
+        margin: 0;
+      }
+      .flashPrice{
+        color: green;
+        font-weight: 100;
+        margin: 0;
+      }
+      .flashDescription{
+        color: white;
+        margin: 0;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
     }
   }
 }
