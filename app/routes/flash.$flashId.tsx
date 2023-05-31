@@ -3,6 +3,7 @@ import { json } from '@remix-run/node'
 import { useLoaderData, useOutletContext } from '@remix-run/react'
 import createServerSupabase from 'utils/supabase.server'
 import MyListbox, { Option } from '~/components/Listbox'
+import Tags from '~/components/Tags'
 import { SupabaseOutletContext } from '~/root'
 import styles from '~/styles/FlashSplatRoute.css'
 
@@ -71,6 +72,7 @@ export default function Flash() {
           <h1>{userFlash.name}</h1>
           <p>{userFlash.description}</p>
           <p>${userFlash.price}</p>
+          <Tags tags={userFlash.tags} />
           <MyListbox options={sizes} />
           <button className="purchaseButton">Purchase</button>
         </div>

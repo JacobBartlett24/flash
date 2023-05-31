@@ -4,6 +4,14 @@ body, html {
   box-sizing: border-box;
 }
 
+.tags {
+  padding: 4px 10px;
+  background-color: purple;
+  color: white;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
 @font-face {
   font-family: "Bebas Neue";
   src: url("../../public/BebasNeue-Regular.ttf") format("truetype");
