@@ -76,6 +76,14 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin-bottom: 20px;
+}
+.galleryPage .galleryContainer .tags {
+  padding: 4px 10px;
+  background-color: purple;
+  color: white;
+  border-radius: 15px;
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=GalleryGenre.css.map */

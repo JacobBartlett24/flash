@@ -11,6 +11,7 @@ import createServerSupabase from 'utils/supabase.server'
 import { Await, Link, useLoaderData, useOutletContext } from '@remix-run/react'
 import { Suspense, useEffect } from 'react'
 import { SupabaseOutletContext } from '~/root'
+import Tags from '~/components/Tags'
 
 export type filters = {
   genre: string
@@ -71,7 +72,7 @@ export default function GalleryGenre() {
                       <h1 className="flashName">{image.name}</h1>
                       <h2 className="flashPrice">${image.price}</h2>
                       <p className="flashDescription">{image.description}</p>
-                      <div>{JSON.stringify(image.tags, null, 2)}</div>
+                      <Tags tags={image.tags} />
                     </div>
                   </div>
                 )
