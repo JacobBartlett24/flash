@@ -52,9 +52,6 @@
       h2{
         font-weight: 200;
       }
-      p{
-        
-      }     
     }
     
   }
@@ -103,49 +100,11 @@
   }
 }
 
-.modalBackground{
-  width: 100%;
-  position: absolute;
-  background-color: rgba(0,0,0,.6);
-  top: 0;
-  left: 0;
-  z-index: 100;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  .modal{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 20vh;
-    color: black;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    position: relative;
-    z-index: 1001;
-  }
-  .modalHeader{
-    display: flex;
-    justify-content: flex-end;
-    color: red;
-    padding: 5px;
-  }
-  .modalContent{
-    background-color: white;
-    border: 1px solid black;
-    height: 500px;
-    width: 500px;
-    border-radius: $primaryBorderRadius;
-    display: flex;
-    flex-direction: column;
-    input{
-      margin-top: 10rem;
-    }
-  }
-  .modalBody{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
+dialog{
+  border: none;
+  height: 300px;
+  width: 200px;
+  position: fixed;
+  
+  
 }

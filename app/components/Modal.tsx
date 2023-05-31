@@ -1,33 +1,31 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { FaTimes } from 'react-icons/fa'
 
 type props = {
   enableModal: any
-  height: number
   modal: boolean
 }
 
-export default function Modal({ modal, height, enableModal }: props) {
+export default function Modal({modal, enableModal}: props) {
+
+  const ref = useRef<HTMLDialogElement>(null)
+  
+  useEffect(() => {
+    if(modal){
+      ref.current?.showModal() 
+    }else{
+      ref.current?.close()
+    }
+  }, [modal])
+
   return (
     <>
-      <div
-        className="modalBackground"
-        style={{ height: height + 60 + 'px' }}
-        hidden={modal}
-        onClick={() => enableModal(!modal)}
-      >
-        <div className="modal">
-          <div className="modalContent">
-            <div className="modalHeader">
-              <FaTimes size={30} />
-            </div>
-            <div className="modalBody">
-              <h1>Change profile picture</h1>
-              <input type="file" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <dialog ref={ref}>
+        <p>Greetings, one and all!</p>
+        <form method="dialog">
+          <button>OK</button>
+        </form>
+      </dialog>
     </>
   )
 }
