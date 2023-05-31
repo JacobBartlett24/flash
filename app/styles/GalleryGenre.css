@@ -39,7 +39,9 @@
 .galleryPage .galleryContainer .imgWrapper {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-bottom: 8rem;
+  max-width: 250px;
 }
 .galleryPage .galleryContainer img {
   min-height: 250px;
@@ -54,6 +56,34 @@
 .galleryPage .galleryContainer img:hover {
   scale: 1.1;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.galleryPage .galleryContainer .flashInfo .flashName {
+  color: white;
+  font-weight: 100;
+  margin: 0;
+}
+.galleryPage .galleryContainer .flashInfo .flashPrice {
+  color: green;
+  font-weight: 100;
+  margin: 0;
+}
+.galleryPage .galleryContainer .flashInfo .flashDescription {
+  color: white;
+  margin: 0;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 20px;
+}
+.galleryPage .galleryContainer .tags {
+  padding: 4px 10px;
+  background-color: purple;
+  color: white;
+  border-radius: 15px;
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=GalleryGenre.css.map */
