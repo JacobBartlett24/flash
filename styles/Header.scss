@@ -33,17 +33,21 @@
     }
   }
   .logoutButton{
-    background-color: white;
-    padding: .5rem 2rem;
     text-decoration: none;
-    color: black;
-    transition: .25s background-color, .25s color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100px;
+    height: 2rem;
     border-radius: $primaryBorderRadius;
-    &:hover{
-      background-color: $secondaryBackgroundColor;
-      color: white;
+    background-color: $thirdBackgroundColor;
+    transition: .25s scale;
+    box-shadow: $lightShadow;
+    border: none;
+
+    &:hover {
+      scale: 1.1;
     }
   }
 }
-
-// linear-gradient(black 10%, #1e1e1e );

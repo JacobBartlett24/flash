@@ -84,15 +84,15 @@ export const loader = async ({ request }: LoaderArgs) => {
     console.log(error)
   }
 
-  return { userFlash: data }
+  return { userFlash: data, session: session }
 }
 
 export default function Profile() {
-  const { userFlash } = useLoaderData<typeof loader>()
+  const { userFlash, session } = useLoaderData<typeof loader>()
 
   return (
     <div className="profilePage">
-      <ProfileLayout galleryInfo={userFlash} />
+      <ProfileLayout galleryInfo={userFlash} session={session} />
 
       {/* <Form method="POST" className="uploadFlashForm">
         <label htmlFor="url">URL</label>

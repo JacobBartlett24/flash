@@ -101,6 +101,10 @@ dialog {
   height: 300px;
   width: 200px;
   position: fixed;
+  border-radius: 15px;
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /*# sourceMappingURL=ProfilePage.css.map */

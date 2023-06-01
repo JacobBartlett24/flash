@@ -105,6 +105,8 @@ dialog{
   height: 300px;
   width: 200px;
   position: fixed;
-  
-  
+  border-radius: $primaryBorderRadius;
+  &::backdrop{
+    background-color: rgba(0,0,0,.6);
+  }
 }

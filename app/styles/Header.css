@@ -28,16 +28,21 @@
   align-items: center;
 }
 .header .logoutButton {
-  background-color: white;
-  padding: 0.5rem 2rem;
   text-decoration: none;
-  color: black;
-  transition: 0.25s background-color, 0.25s color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100px;
+  height: 2rem;
   border-radius: 15px;
+  background-color: #4d4d4d;
+  transition: 0.25s scale;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  border: none;
 }
 .header .logoutButton:hover {
-  background-color: #3c3c3c;
-  color: white;
+  scale: 1.1;
 }
 
 /*# sourceMappingURL=Header.css.map */
