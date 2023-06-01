@@ -23,19 +23,12 @@ type props = {
 export default function ProfileLayout({ galleryInfo }: props) {
   const { supabase } = useOutletContext<SupabaseOutletContext>()
 
-  const [modal, enableModal] = useState<boolean>(true)
-  const [height, setHeight] = useState(0)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    setHeight(ref.current!.clientHeight)
-    console.log(height)
-  }, [height])
+  const [modal, enableModal] = useState<boolean>(false)
 
   return (
     <>
-      <Modal height={height} enableModal={enableModal} modal={modal} />
-      <div className="profileLayout" ref={ref}>
+      
+      <div className="profileLayout">
         <div className="topSection">
           <div className="profilePicture">
             <img
@@ -44,6 +37,7 @@ export default function ProfileLayout({ galleryInfo }: props) {
             />
             <div onClick={() => enableModal(!modal)} id="profilePictureOverlay">
               Change picture
+              {modal}
             </div>
           </div>
           <div className="profileInfo">
@@ -59,17 +53,19 @@ export default function ProfileLayout({ galleryInfo }: props) {
               minima vel beatae rerum qui velit quos impedit quo praesentium
               quod sint dolorem soluta eum a cum? At?
             </p>
+            
           </div>
         </div>
         <span className="placeholder">
           <Link to="/upload">Upload Flash</Link>
         </span>
+        <Modal modal={modal} enableModal={enableModal}/>
         <div className="bottomSection">
           <div className="gallery">
             {galleryInfo.map((flash: userFlash) => {
               return (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Link key={flash.id} to={`/flash/${flash.id}`}>
+                <Suspense key={flash.id}  fallback={<div>Loading...</div>}>
+                  <Link to={`/flash/${flash.id}`}>
                     <img
                       src={
                         supabase.storage
