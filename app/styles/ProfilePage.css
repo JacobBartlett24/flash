@@ -96,15 +96,27 @@
   scale: 1.1;
 }
 
-dialog {
+dialog[open] {
   border: none;
   height: 300px;
   width: 200px;
   position: fixed;
+  transition: 0.25s top;
   border-radius: 15px;
+  overflow-x: hidden;
+  animation: show 1s ease normal;
 }
-dialog::backdrop {
+dialog[open]::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+@keyframes show {
+  from {
+    transform: translateY(-110%);
+  }
+  to {
+    transform: translateY(0%);
+  }
 }
 
 /*# sourceMappingURL=ProfilePage.css.map */

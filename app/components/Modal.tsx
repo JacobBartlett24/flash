@@ -46,7 +46,9 @@ export default function Modal({ modal, enableModal, session }: props) {
     <>
       <dialog ref={ref}>
         <form method="dialog">
-          <button>OK</button>
+          <button>
+            <FaTimes />
+          </button>
         </form>
         <label>Image URL:</label>
         <input

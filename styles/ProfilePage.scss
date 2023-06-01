@@ -100,13 +100,25 @@
   }
 }
 
-dialog{
+dialog[open]{
   border: none;
   height: 300px;
   width: 200px;
   position: fixed;
+  transition: .25s top;
   border-radius: $primaryBorderRadius;
+  overflow-x: hidden;
   &::backdrop{
     background-color: rgba(0,0,0,.6);
+  }
+  animation: show 1s ease normal;
+}
+
+@keyframes show{
+  from {
+      transform: translateY(-110%);
+  }
+  to {
+      transform: translateY(0%);
   }
 }

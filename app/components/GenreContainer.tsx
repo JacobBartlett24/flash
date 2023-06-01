@@ -5,7 +5,20 @@ import { SupabaseOutletContext } from '~/root'
 
 type props = {
   title: string
-  images: any
+  images: UserFlash[]
+}
+
+type UserFlash = {
+  color_style: string | null
+  created_at: string | null
+  description: string | null
+  id: number
+  img_filepath: string | null
+  img_url: string | null
+  name: string | null
+  price: number | null
+  quantity: number | null
+  tags: JSON
 }
 
 export default function GenreContainer({ title, images }: props) {
@@ -23,7 +36,7 @@ export default function GenreContainer({ title, images }: props) {
           </Link>
         </div>
         <div className="imgGallery">
-          {images.map((userFlash: any) => {
+          {images.map((userFlash: UserFlash) => {
             return (
               <Link
                 to={`/flash/${userFlash.id}`}
