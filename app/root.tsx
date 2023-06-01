@@ -1,7 +1,14 @@
-import { LinksFunction, LoaderArgs, json, redirect } from '@remix-run/node'
+import {
+  ActionArgs,
+  LinksFunction,
+  LoaderArgs,
+  json,
+  redirect,
+} from '@remix-run/node'
 import styles from '~/styles/Root.css'
 import headerStyles from '~/styles/Header.css'
 import {
+  Form,
   Links,
   LiveReload,
   Meta,
@@ -59,6 +66,17 @@ export type SupabaseOutletContext = {
   supabase: TypedSupabaseClient
 }
 
+export async function action({ request }: ActionArgs) {
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
+
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    console.log(error)
+    return redirect('/')
+  } else return redirect('/')
+}
+
 export default function App() {
   const { env, session } = useLoaderData()
   const revalidator = useRevalidator()
@@ -99,7 +117,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Header handleLogout={handleLogout} />
+        <Form method="post">
+          <Header session={session} handleLogout={handleLogout} />
+        </Form>
         <Outlet context={{ supabase }} />
         <ScrollRestoration />
         <Scripts />

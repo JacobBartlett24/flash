@@ -3,9 +3,10 @@ import { FaLaugh } from 'react-icons/fa'
 
 type props = {
   handleLogout: () => void
+  session: string | undefined
 }
 
-export default function Header({ handleLogout }: props) {
+export default function Header({ handleLogout, session }: props) {
   return (
     <div className="header">
       <div>

@@ -45,6 +45,7 @@
     transition: .25s scale;
     box-shadow: $lightShadow;
     border: none;
+    cursor: pointer;
 
     &:hover {
       scale: 1.1;
