@@ -13,6 +13,10 @@ body, html{
   margin-right: 5px;
 }
 
+.tagLink{
+  text-decoration: none;
+}
+
 @font-face {
   font-family: 'Bebas Neue';
   src: url('../../public/BebasNeue-Regular.ttf') format('truetype');
