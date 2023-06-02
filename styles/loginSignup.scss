@@ -1,32 +1,59 @@
 @import "utils";
 
 .card{
-  height: 500px;
-  width: 400px;
-  background-color: $secondaryBackgroundColor;
-  border-radius: $primaryBorderRadius;
-  box-shadow: $lightShadow;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
   color: white;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-  h1{
-    font-weight: 100;
+  justify-items: center;
+  .imgWrapper{
+    img{
+      animation: floating ease-in-out 3s infinite alternate;
+      
+    }
   }
-  .buttonGroup{
+  .formWrapper{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    .userInput{
-      height: 2rem;
-      border-radius: $primaryBorderRadius;
-      border: 1px solid black;
-      margin: .5rem 0;
-      padding: 5px;
-      box-shadow: $lightShadow;
+    .signupForm{
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      input{
+        font-size: 16px;
+        font-size: max(16px, 1em);
+        font-family: inherit;
+        padding: 0.25em 0.5em;
+        background-color: #fff;
+        border: none;
+        border-radius: 15px;
+        box-shadow: $lightShadow;
+      }
+      input:not(textarea) {
+        line-height: 1;
+        height: 2.25rem;
+      }
+    }
+    .signupIcons{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      color: white;
+      *{
+        transition: .25s all;
+        cursor: pointer;
+        
+      }
+      *:hover{
+        scale: 1.1;
+      }
     }
   }
 }
@@ -34,8 +61,13 @@
 .page{
   height: calc(100vh - $headerHeight);
   background-color: $primaryBackgroundColor;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
+}
+
+@keyframes floating{
+  0%{
+    transform: translateY(0%);
+  }
+  100%{
+    transform: translateY(-10%);
+  }
 }

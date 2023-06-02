@@ -16,6 +16,12 @@ body, html {
   text-decoration: none;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "Bebas Neue";
   src: url("../../public/BebasNeue-Regular.ttf") format("truetype");
