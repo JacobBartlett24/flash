@@ -12,14 +12,16 @@ export default function Header({ handleLogout, session }: props) {
       <div>
         <Link to="/">Flash</Link>
       </div>
-      <div className="profile">
-        <Link to="/profile">
-          <FaLaugh size={20} />
-        </Link>
-        <button className="logoutButton" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
+      {session ? (
+        <div className="profile">
+          <Link to="/profile">
+            <FaLaugh size={20} />
+          </Link>
+          <button className="logoutButton" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
