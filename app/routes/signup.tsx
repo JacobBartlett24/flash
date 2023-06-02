@@ -1,4 +1,4 @@
-import type { LinksFunction } from '@remix-run/node'
+import { ActionArgs, LinksFunction, redirect } from '@remix-run/node'
 import type { SupabaseOutletContext } from '~/root'
 import { FcGoogle } from 'react-icons/fc'
 
@@ -6,9 +6,33 @@ import skull from '../../public/flameSkull.png'
 import { Form, useOutletContext } from '@remix-run/react'
 import styles from '~/styles/loginSignup.css'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
+import createServerSupabase from 'utils/supabase.server'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
+}
+
+export const action = async ({ request }: ActionArgs) => {
+  let formData = await request.formData()
+  let email = formData.get('email')
+  let password = formData.get('password')
+
+  const response = new Response()
+  const supabase = createServerSupabase({ request, response })
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email!.toString(),
+    password: password!.toString(),
+  })
+
+  if (error) {
+    console.log(error)
+    return redirect('/signup')
+  }
+
+  return redirect('/homepage')
+
+  return null
 }
 
 export default function Signup() {
@@ -41,11 +65,13 @@ export default function Signup() {
         <div className="formWrapper">
           <Form className="signupForm" method="post">
             <input
+              type="email"
               className="userInput"
-              name="username"
-              placeholder="Username..."
+              name="email"
+              placeholder="Email..."
             />
             <input
+              type="password"
               className="userInput"
               name="password"
               placeholder="Password..."
