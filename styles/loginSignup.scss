@@ -49,11 +49,28 @@
       *{
         transition: .25s all;
         cursor: pointer;
-        
       }
       *:hover{
         scale: 1.1;
       }
+    }
+    .button{
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      width: 100px;
+      height: 2rem;
+      border-radius: $primaryBorderRadius;
+      background-color: $thirdBackgroundColor;
+      transition: .25s scale;
+      box-shadow: $lightShadow;
+      border: none;
+      cursor: pointer;
+    &:hover {
+      scale: 1.1;
+    }
     }
   }
 }
