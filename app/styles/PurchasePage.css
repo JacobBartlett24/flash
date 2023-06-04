@@ -1,5 +1,13 @@
 .purchasePage {
-  width: 99vw;
+  width: 100vw;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.purchasePage .sidebar {
+  background-color: black;
+  color: white;
+  width: 50vw;
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=PurchasePage.css.map */

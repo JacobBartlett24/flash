@@ -1,8 +1,13 @@
-import type { LoaderArgs } from '@remix-run/node'
+import type { LinksFunction, LoaderArgs } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { Elements, PaymentElement } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { createPaymentIntent } from 'utils/payment.server'
+import styles from '~/styles/PurchasePage.css'
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: styles }]
+}
 
 export const loader = async ({ request, params }: LoaderArgs) => {
   const paymentIntent = await createPaymentIntent()
