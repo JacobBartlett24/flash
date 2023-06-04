@@ -1,10 +1,50 @@
+@import "utils";
+
 .purchasePage{
   width: 100vw;
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  .sidebar{
-    background-color: black;
-    color: white;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - $headerHeight);
+  .itemDesc{
     width: 50vw;
+    background-color: $secondaryBackgroundColor;
+    padding: 3rem;
+    display: grid;
+    grid-template-rows: 3rem 1fr;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    .title{
+      grid-column: 1 / 3;
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      height: 400px;
+      width: 400px;
+      border-radius: 15px;
+      box-shadow: $darkShadow;
+    }
+    .itemInfo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .price{
+        color: green !important;
+        font-size: 1.3rem;
+      }
+      .desc{
+        color: white;
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .sidebar{
+    width: 50vw;
+    background-color: white;
+    padding: 3rem;
+    box-shadow: $darkShadow;
+
   }
 }

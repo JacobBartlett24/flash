@@ -1,13 +1,49 @@
 .purchasePage {
   width: 100vw;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 60px);
+}
+.purchasePage .itemDesc {
+  width: 50vw;
+  background-color: #3c3c3c;
+  padding: 3rem;
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.purchasePage .itemDesc .title {
+  grid-column: 1/3;
+  display: flex;
+  justify-content: center;
+}
+.purchasePage .itemDesc img {
+  height: 400px;
+  width: 400px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.purchasePage .itemDesc .itemInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.purchasePage .itemDesc .itemInfo .price {
+  color: green !important;
+  font-size: 1.3rem;
+}
+.purchasePage .itemDesc .itemInfo .desc {
+  color: white;
+  font-size: 1.1rem;
 }
 .purchasePage .sidebar {
-  background-color: black;
-  color: white;
   width: 50vw;
-  padding: 1rem;
+  background-color: white;
+  padding: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 /*# sourceMappingURL=PurchasePage.css.map */

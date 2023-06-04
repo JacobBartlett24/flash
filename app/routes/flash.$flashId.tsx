@@ -8,12 +8,6 @@ import createServerSupabase from 'utils/supabase.server'
 import MyListbox from '~/components/Listbox'
 import Tags from '~/components/Tags'
 import styles from '~/styles/FlashSplatRoute.css'
-import { loadStripe } from '@stripe/stripe-js'
-import {
-  Elements,
-  PaymentElement,
-  PaymentRequestButtonElement,
-} from '@stripe/react-stripe-js'
 import { createPaymentIntent } from 'utils/payment.server'
 
 export const links: LinksFunction = () => {
@@ -21,7 +15,7 @@ export const links: LinksFunction = () => {
 }
 
 export const action = async ({ request, params }: ActionArgs) => {
-  return redirect('/purchase')
+  return redirect(`/purchase/${params.flashId}`)
 }
 
 export const loader = async ({ request, params }: LoaderArgs) => {
@@ -69,7 +63,7 @@ const sizes = [
 
 export default function Flash() {
   const { supabase } = useOutletContext<SupabaseOutletContext>()
-  const { userFlash, envKey, paymentIntent } = useLoaderData<typeof loader>()
+  const { userFlash } = useLoaderData<typeof loader>()
 
   return (
     <>

@@ -8,10 +8,10 @@ export async function createPaymentIntent(){
   return await stripe.paymentIntents.create({
     amount: 1099,
     currency: "usd",
+
     automatic_payment_methods: {
       enabled: true,
     },
   });
 }
 
-console.log(createPaymentIntent())
