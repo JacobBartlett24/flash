@@ -1,12 +1,7 @@
-import {
-  ActionArgs,
-  LinksFunction,
-  LoaderArgs,
-  json,
-  redirect,
-} from '@remix-run/node'
-import styles from '~/styles/Root.css'
-import headerStyles from '~/styles/Header.css'
+import type { ActionArgs, LinksFunction, LoaderArgs } from '@remix-run/node'
+import type { SupabaseClient } from '@supabase/auth-helpers-remix'
+import type { Database } from 'db_types'
+
 import {
   Form,
   Links,
@@ -18,16 +13,15 @@ import {
   useLoaderData,
   useRevalidator,
 } from '@remix-run/react'
-import Header from './components/Header'
-import {
-  SupabaseClient,
-  createBrowserClient,
-  createServerClient,
-} from '@supabase/auth-helpers-remix'
+import { json, redirect } from '@remix-run/node'
+import { createBrowserClient } from '@supabase/auth-helpers-remix'
 import { useEffect, useState } from 'react'
-import { Database } from 'db_types'
-import { createClient } from '@supabase/supabase-js'
+import { loadStripe } from '@stripe/stripe-js'
+
+import Header from './components/Header'
 import createServerSupabase from 'utils/supabase.server'
+import headerStyles from '~/styles/Header.css'
+import styles from '~/styles/Root.css'
 
 export const links: LinksFunction = () => {
   return [
@@ -41,6 +35,7 @@ export const loader = async ({ request }: LoaderArgs) => {
     SUPABASE_URL: process.env.SUPABASE_URL!,
     SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY!,
   }
+  const stripePromise = loadStripe(process.env.STRIPE_KEY!)
 
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
@@ -53,6 +48,7 @@ export const loader = async ({ request }: LoaderArgs) => {
     {
       env,
       session,
+      stripePromise,
     },
     {
       headers: response.headers,

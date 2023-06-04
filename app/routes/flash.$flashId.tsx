@@ -1,14 +1,27 @@
-import type { LinksFunction, LoaderArgs } from '@remix-run/node'
-import { json } from '@remix-run/node'
-import { useLoaderData, useOutletContext } from '@remix-run/react'
+import type { ActionArgs, LinksFunction, LoaderArgs } from '@remix-run/node'
+import type { Option } from '~/components/Listbox'
+import type { SupabaseOutletContext } from '~/root'
+
+import { json, redirect } from '@remix-run/node'
+import { Form, useLoaderData, useOutletContext } from '@remix-run/react'
 import createServerSupabase from 'utils/supabase.server'
-import MyListbox, { Option } from '~/components/Listbox'
+import MyListbox from '~/components/Listbox'
 import Tags from '~/components/Tags'
-import { SupabaseOutletContext } from '~/root'
 import styles from '~/styles/FlashSplatRoute.css'
+import { loadStripe } from '@stripe/stripe-js'
+import {
+  Elements,
+  PaymentElement,
+  PaymentRequestButtonElement,
+} from '@stripe/react-stripe-js'
+import { createPaymentIntent } from 'utils/payment.server'
 
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
+}
+
+export const action = async ({ request, params }: ActionArgs) => {
+  return redirect('/purchase')
 }
 
 export const loader = async ({ request, params }: LoaderArgs) => {
@@ -16,18 +29,21 @@ export const loader = async ({ request, params }: LoaderArgs) => {
 
   const response = new Response()
   const supabase = createServerSupabase({ request, response })
-
+  const paymentIntent = await createPaymentIntent()
   const { data } = await supabase
     .from('Flash')
     .select()
     .eq('id', flashID)
     .single()
 
-  return { userFlash: data! }
+  return {
+    userFlash: data!,
+    envKey: process.env.STRIPE_KEY!,
+    paymentIntent: paymentIntent,
+  }
 }
 
 export function ErrorBoundary({ error }) {
-  console.error(error)
   return (
     <html>
       <head>
@@ -49,10 +65,12 @@ const sizes = [
   { id: 6, name: 'Other', unavailable: false },
 ] as Option[]
 
+//
+
 export default function Flash() {
   const { supabase } = useOutletContext<SupabaseOutletContext>()
+  const { userFlash, envKey, paymentIntent } = useLoaderData<typeof loader>()
 
-  const { userFlash } = useLoaderData<typeof loader>()
   return (
     <>
       <div className="soloDisplay">
@@ -68,14 +86,22 @@ export default function Flash() {
             />
           }
         </div>
-        <div className="info">
-          <h1>{userFlash.name}</h1>
-          <p>{userFlash.description}</p>
-          <p>${userFlash.price}</p>
-          <Tags tags={userFlash.tags} />
-          <MyListbox options={sizes} />
-          <button className="purchaseButton">Purchase</button>
-        </div>
+        <Form method="post">
+          <div className="info">
+            <h1>{userFlash.name}</h1>
+            <p>{userFlash.description}</p>
+            <p>${userFlash.price}</p>
+            <Tags tags={userFlash.tags} />
+            <MyListbox options={sizes} />
+            <button className="purchaseButton">Purchase</button>
+            {/* <Elements
+              stripe={stripePromise}
+              options={{ clientSecret: paymentIntent.client_secret! }}
+            >
+              <PaymentElement />
+            </Elements> */}
+          </div>
+        </Form>
       </div>
     </>
   )
