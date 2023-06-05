@@ -35,7 +35,7 @@ export default function ProfileLayout({ galleryInfo, session }: props) {
             <img
               src={
                 supabase.storage.from('avatars').getPublicUrl(`${session}`).data
-                  .publicUrl ?? null
+                  .publicUrl
               }
               alt="profilePicture"
             />

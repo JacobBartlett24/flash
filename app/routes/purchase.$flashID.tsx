@@ -1,7 +1,12 @@
 import type { LinksFunction, LoaderArgs } from '@remix-run/node'
 
-import { useLoaderData, useOutletContext } from '@remix-run/react'
-import { Elements, PaymentElement } from '@stripe/react-stripe-js'
+import { Form, useLoaderData, useOutletContext } from '@remix-run/react'
+import {
+  Elements,
+  PaymentElement,
+  useElements,
+  useStripe,
+} from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { createPaymentIntent } from 'utils/payment.server'
 import styles from '~/styles/PurchasePage.css'
@@ -13,8 +18,6 @@ export const links: LinksFunction = () => {
 }
 
 export const loader = async ({ request, params }: LoaderArgs) => {
-  const paymentIntent = await createPaymentIntent()
-
   const flashID = params.flashID
   console.log(flashID)
   const response = new Response()
@@ -25,6 +28,8 @@ export const loader = async ({ request, params }: LoaderArgs) => {
     .eq('id', flashID)
     .single()
 
+  const paymentIntent = await createPaymentIntent(data?.price!)
+
   return {
     envKey: process.env.STRIPE_KEY!,
     paymentIntent: paymentIntent,
@@ -34,8 +39,11 @@ export const loader = async ({ request, params }: LoaderArgs) => {
 
 export default function Purchase() {
   const { envKey, paymentIntent, userFlash } = useLoaderData<typeof loader>()
-  const stripePromise = loadStripe(envKey)
   const { supabase } = useOutletContext<SupabaseOutletContext>()
+
+  const stripePromise = loadStripe(envKey)
+  const elements = useElements()
+  const stripe = useStripe()
 
   const appearance = {
     theme: 'flat',
@@ -79,6 +87,16 @@ export default function Purchase() {
     },
   }
 
+  const handleSubmit = async (event: any) => {
+    event.preventDefault()
+    stripe!.confirmPayment({
+      elements: elements!,
+      confirmParams: {
+        return_url: `http://localhost:3000/purchase/success`,
+      },
+    })
+  }
+
   return (
     <div className="purchasePage">
       <div className="itemDesc">
@@ -106,7 +124,10 @@ export default function Purchase() {
             appearance: appearance,
           }}
         >
-          <PaymentElement />
+          <Form onSubmit={handleSubmit} method="get">
+            <PaymentElement />
+            <button>Pay</button>
+          </Form>
         </Elements>
       </div>
     </div>
